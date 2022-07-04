@@ -1,6 +1,6 @@
 import {Card} from '../card/card';
 
-function Main(): JSX.Element {
+function MainScreen(): JSX.Element {
   return (
     <div className="page page--gray page--main">
       <header className="header">
@@ -107,4 +107,4 @@ function Main(): JSX.Element {
   );
 }
 
-export {Main};
+export {MainScreen};

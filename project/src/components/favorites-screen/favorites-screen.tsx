@@ -1,4 +1,4 @@
-function Favorites(): JSX.Element {
+function FavoritesScreen(): JSX.Element {
   return (
     <div className="page">
       <header className="header">
@@ -49,8 +49,7 @@ function Favorites(): JSX.Element {
                     </div>
                     <div className="favorites__image-wrapper place-card__image-wrapper">
                       <a href="#">
-                        <img className="place-card__image" src="img/apartment-small-03.jpg" width="150" height="110"
-                             alt="Place image"/>
+                        <img className="place-card__image" src="img/apartment-small-03.jpg" width="150" height="110" alt="Place image"/>
                       </a>
                     </div>
                     <div className="favorites__card-info place-card__info">
@@ -59,8 +58,7 @@ function Favorites(): JSX.Element {
                           <b className="place-card__price-value">&euro;180</b>
                           <span className="place-card__price-text">&#47;&nbsp;night</span>
                         </div>
-                        <button className="place-card__bookmark-button place-card__bookmark-button--active button"
-                                type="button">
+                        <button className="place-card__bookmark-button place-card__bookmark-button--active button" type="button">
                           <svg className="place-card__bookmark-icon" width="18" height="19">
                             <use xlinkHref="#icon-bookmark"></use>
                           </svg>
@@ -83,8 +81,7 @@ function Favorites(): JSX.Element {
                   <article className="favorites__card place-card">
                     <div className="favorites__image-wrapper place-card__image-wrapper">
                       <a href="#">
-                        <img className="place-card__image" src="img/room-small.jpg" width="150" height="110"
-                             alt="Place image"/>
+                        <img className="place-card__image" src="img/room-small.jpg" width="150" height="110" alt="Place image"/>
                       </a>
                     </div>
                     <div className="favorites__card-info place-card__info">
@@ -93,8 +90,7 @@ function Favorites(): JSX.Element {
                           <b className="place-card__price-value">&euro;80</b>
                           <span className="place-card__price-text">&#47;&nbsp;night</span>
                         </div>
-                        <button className="place-card__bookmark-button place-card__bookmark-button--active button"
-                                type="button">
+                        <button className="place-card__bookmark-button place-card__bookmark-button--active button" type="button">
                           <svg className="place-card__bookmark-icon" width="18" height="19">
                             <use xlinkHref="#icon-bookmark"></use>
                           </svg>
@@ -128,8 +124,7 @@ function Favorites(): JSX.Element {
                   <article className="favorites__card place-card">
                     <div className="favorites__image-wrapper place-card__image-wrapper">
                       <a href="#">
-                        <img className="place-card__image" src="img/apartment-small-04.jpg" width="150" height="110"
-                             alt="Place image"/>
+                        <img className="place-card__image" src="img/apartment-small-04.jpg" width="150" height="110" alt="Place image"/>
                       </a>
                     </div>
                     <div className="favorites__card-info place-card__info">
@@ -138,8 +133,7 @@ function Favorites(): JSX.Element {
                           <b className="place-card__price-value">&euro;180</b>
                           <span className="place-card__price-text">&#47;&nbsp;night</span>
                         </div>
-                        <button className="place-card__bookmark-button place-card__bookmark-button--active button"
-                                type="button">
+                        <button className="place-card__bookmark-button place-card__bookmark-button--active button" type="button">
                           <svg className="place-card__bookmark-icon" width="18" height="19">
                             <use xlinkHref="#icon-bookmark"></use>
                           </svg>
@@ -173,4 +167,4 @@ function Favorites(): JSX.Element {
   );
 }
 
-export {Favorites};
+export {FavoritesScreen};
