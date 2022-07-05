@@ -1,5 +1,4 @@
-import {Offer} from '../../types/offer';
-import {OffersListMain} from '../offers-list-main/offers-list-main';
+import {OffersListMain} from '../../components/offers-list-main/offers-list-main';
 import {OffersList} from '../../types/offers-list';
 
 type MainScreenProps = {

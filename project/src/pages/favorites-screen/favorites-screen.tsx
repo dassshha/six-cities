@@ -1,4 +1,4 @@
-import {OffersListFavorites} from '../offers-list-favorites/offers-list-favorites';
+import {OffersListFavorites} from '../../components/offers-list-favorites/offers-list-favorites';
 import {offers} from '../../mocks/offers';
 
 function FavoritesScreen(): JSX.Element {

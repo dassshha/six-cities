@@ -1,13 +1,12 @@
-import {Offer} from '../../types/offer';
 import {CardMain} from '../card-main/card-main';
 import {useState} from 'react';
+import {OffersList} from '../../types/offers-list';
 
-type OffersListProps = {
-  offers: Offer[]
+type OffersListMainProps = {
+  offers: OffersList
 }
 
-
-function OffersList({offers}: OffersListProps): JSX.Element {
+function OffersListMain({offers}: OffersListMainProps): JSX.Element {
   const [hoveredCard, setHoveredCard] = useState(0);
 
   return (
@@ -18,4 +17,4 @@ function OffersList({offers}: OffersListProps): JSX.Element {
   );
 }
 
-export {OffersList};
+export {OffersListMain};
