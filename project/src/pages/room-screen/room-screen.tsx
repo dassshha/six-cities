@@ -71,7 +71,7 @@ function RoomScreen({offer, reviews}: RoomScreenProps): JSX.Element {
                 </li>
               </ul>
               <div className="property__price">
-                <b className="property__price-value">€120</b>
+                <b className="property__price-value">€{offer.price}</b>
                 <span className="property__price-text">&nbsp;night</span>
               </div>
               <div className="property__inside">

@@ -54,7 +54,7 @@ export const offers: OffersList = [
       'name': 'Angelina'
     },
     'id': 2,
-    'images': ["img/apartment-01.jpg", "img/apartment-01.jpg"],
+    'images': ['img/apartment-01.jpg', 'img/apartment-01.jpg'],
     'isFavorite': true,
     'isPremium': true,
     'location': {
@@ -88,7 +88,7 @@ export const offers: OffersList = [
       'name': 'Angelina'
     },
     'id': 3,
-    'images': ["img/apartment-02.jpg", "img/apartment-02.jpg", "img/apartment-02.jpg", "img/apartment-02.jpg", "img/apartment-02.jpg", "img/apartment-02.jpg"],
+    'images': ['img/apartment-02.jpg', 'img/apartment-02.jpg', 'img/apartment-02.jpg', 'img/apartment-02.jpg', 'img/apartment-02.jpg', 'img/apartment-02.jpg'],
     'isFavorite': true,
     'isPremium': false,
     'location': {
@@ -122,7 +122,7 @@ export const offers: OffersList = [
       'name': 'Angelina'
     },
     'id': 4,
-    'images': ["img/apartment-03.jpg", "img/apartment-03.jpg", "img/apartment-03.jpg"],
+    'images': ['img/apartment-03.jpg', 'img/apartment-03.jpg', 'img/apartment-03.jpg'],
     'isFavorite': true,
     'isPremium': true,
     'location': {
