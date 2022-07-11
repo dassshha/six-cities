@@ -2,6 +2,7 @@ import {Offer} from '../../types/offer';
 import {Link} from 'react-router-dom';
 import {Rating} from '../rating/rating';
 import {Premium} from '../premium/premium';
+import {Favorite} from '../favorite/favorite';
 
 type CardMainProps = Offer & {
   onOfferHover: (offerId: number) => void
@@ -23,12 +24,7 @@ function CardMain(props: CardMainProps): JSX.Element {
             <b className="place-card__price-value">&euro;{price}</b>
             <span className="place-card__price-text">&#47;&nbsp;night</span>
           </div>
-          <button className={`place-card__bookmark-button ${isFavorite ? 'place-card__bookmark-button--active' : null} button`} type="button">
-            <svg className="place-card__bookmark-icon" width="18" height="19">
-              <use xlinkHref="#icon-bookmark"></use>
-            </svg>
-            <span className="visually-hidden">To bookmarks</span>
-          </button>
+          <Favorite className='place-card' isFavorite={isFavorite}/>
         </div>
         <div className="place-card__rating rating">
           <Rating className='place-card' value={rating}/>

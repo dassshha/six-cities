@@ -6,6 +6,8 @@ import {ReviewsListType} from '../../types/reviews-list-type';
 import {Goods} from '../../components/goods/goods';
 import {Host} from '../../components/host/host';
 import {Premium} from '../../components/premium/premium';
+import {Favorite} from '../../components/favorite/favorite';
+import {Rating} from '../../components/rating/rating';
 
 type RoomScreenProps = {
   offer: Offer,
@@ -51,19 +53,11 @@ function RoomScreen({offer, reviews}: RoomScreenProps): JSX.Element {
                 <h1 className="property__name">
                   {offer.title}
                 </h1>
-                <button className="property__bookmark-button button" type="button">
-                  <svg className="property__bookmark-icon" width={31} height={33}>
-                    <use xlinkHref="#icon-bookmark"/>
-                  </svg>
-                  <span className="visually-hidden">To bookmarks</span>
-                </button>
+                <Favorite className='property' isFavorite={offer.isFavorite}/>
               </div>
               <div className="property__rating rating">
-                <div className="property__stars rating__stars">
-                  <span style={{width: '80%'}}/>
-                  <span className="visually-hidden">Rating</span>
-                </div>
-                <span className="property__rating-value rating__value">4.8</span>
+                <Rating className='property' value={offer.rating}/>
+                <span className="property__rating-value rating__value">{offer.rating}</span>
               </div>
               <ul className="property__features">
                 <li className="property__feature property__feature--entire">

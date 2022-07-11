@@ -123,7 +123,7 @@ export const offers: OffersList = [
     },
     'id': 4,
     'images': ["img/apartment-03.jpg", "img/apartment-03.jpg", "img/apartment-03.jpg"],
-    'isFavorite': false,
+    'isFavorite': true,
     'isPremium': true,
     'location': {
       'latitude': 52.35514938496378,
