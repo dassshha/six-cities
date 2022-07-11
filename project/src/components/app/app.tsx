@@ -8,14 +8,16 @@ import {PageNotFoundScreen} from '../../pages/page-not-found-screen/page-not-fou
 import {PrivateRoute} from '../private-route/private-route';
 import {OffersList} from '../../types/offers-list';
 import {City} from '../../types/city';
+import {ReviewsListType} from '../../types/reviews-list-type';
 
 type AppProps = {
   offers: OffersList,
+  reviews: ReviewsListType
   city: City
 };
 
 function App(props: AppProps): JSX.Element {
-  const {offers, city} = props;
+  const {offers, reviews, city} = props;
   return (
     <BrowserRouter>
       <Routes>
@@ -27,7 +29,7 @@ function App(props: AppProps): JSX.Element {
           </PrivateRoute>
         }
         />
-        <Route path={AppRoute.Room} element={<RoomScreen/>}/>
+        <Route path={AppRoute.Room} element={<RoomScreen reviews={reviews}/>}/>
         <Route path='*' element={<PageNotFoundScreen/>}/>
       </Routes>
     </BrowserRouter>

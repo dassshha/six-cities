@@ -2,7 +2,7 @@ import {RatingStar} from '../rating-star/rating-star';
 import {RATING} from '../../const';
 import {ChangeEvent, useState} from 'react';
 
-function CommentForm(): JSX.Element {
+function ReviewForm(): JSX.Element {
   const [rating, setRating] = useState(0);
   const [comment, setComment] = useState('');
   return (
@@ -29,4 +29,4 @@ function CommentForm(): JSX.Element {
   );
 }
 
-export {CommentForm};
+export {ReviewForm};
