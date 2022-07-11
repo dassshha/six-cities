@@ -1,13 +1,13 @@
 import {OffersListMain} from '../../components/offers-list-main/offers-list-main';
 import {OffersList} from '../../types/offers-list';
 import {MyMap} from '../../components/map/my-map';
-import {City} from '../../types/city';
+import {CityType} from '../../types/city-type';
 import {useState} from 'react';
 // import {Offer} from '../../types/offer';
 
 type MainScreenProps = {
   offers: OffersList,
-  city: City
+  city: CityType
 }
 
 function MainScreen(props: MainScreenProps): JSX.Element {

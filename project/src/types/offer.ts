@@ -7,7 +7,7 @@ type City = {
   'name': string
 }
 
-type Host = {
+export type HostType = {
   'avatarUrl': string,
   'id': number,
   'isPro': boolean,
@@ -25,7 +25,7 @@ export type Offer = {
   'city': City,
   'description': string,
   'goods': string[],
-  'host': Host,
+  'host': HostType,
   'id': number,
   'images': string[],
   'isFavorite': boolean,
