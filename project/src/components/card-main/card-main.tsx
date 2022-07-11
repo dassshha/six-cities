@@ -1,5 +1,6 @@
 import {Offer} from '../../types/offer';
 import {Link} from 'react-router-dom';
+import {Rating} from '../rating/rating';
 
 type CardMainProps = Offer & {
   onOfferHover: (offerId: number) => void
@@ -29,10 +30,7 @@ function CardMain(props: CardMainProps): JSX.Element {
           </button>
         </div>
         <div className="place-card__rating rating">
-          <div className="place-card__stars rating__stars">
-            <span style={{width: `${Math.round(rating) * 20}%`}}></span>
-            <span className="visually-hidden">Rating</span>
-          </div>
+          <Rating className='place-card' value={rating}/>
         </div>
         <h2 className="place-card__name">
           <Link to={`/offer/:${id}`}>{title}</Link>

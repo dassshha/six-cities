@@ -1,7 +1,8 @@
 import {ReviewType} from '../../types/review-type';
+import {Rating} from '../rating/rating';
 
 function Review(props: ReviewType): JSX.Element {
-  const {comment, date, user} = props;
+  const {comment, date, user, rating} = props;
   return (
     <li className="reviews__item">
       <div className="reviews__user user">
@@ -15,10 +16,7 @@ function Review(props: ReviewType): JSX.Element {
       </div>
       <div className="reviews__info">
         <div className="reviews__rating rating">
-          <div className="reviews__stars rating__stars">
-            <span style={{width: '80%'}}></span>
-            <span className="visually-hidden">Rating</span>
-          </div>
+          <Rating className='reviews' value={rating}/>
         </div>
         <p className="reviews__text">
           {comment}

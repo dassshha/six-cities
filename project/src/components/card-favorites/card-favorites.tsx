@@ -1,4 +1,5 @@
 import {Offer} from '../../types/offer';
+import {Rating} from '../rating/rating';
 
 function CardFavorites(props: Offer): JSX.Element {
   const {previewImage, isPremium, price, title, type, isFavorite, rating} = props;
@@ -24,10 +25,7 @@ function CardFavorites(props: Offer): JSX.Element {
           </button>
         </div>
         <div className="place-card__rating rating">
-          <div className="place-card__stars rating__stars">
-            <span style={{width: `${Math.round(rating) * 20}%`}}></span>
-            <span className="visually-hidden">Rating</span>
-          </div>
+          <Rating className='place-card' value={rating}/>
         </div>
         <h2 className="place-card__name">
           <a href="#">{title}</a>
