@@ -2,14 +2,13 @@ import {Offer} from '../../types/offer';
 import {Link} from 'react-router-dom';
 
 type CardMainProps = Offer & {
-  onHover: () => void,
-  onLeave: () => void
-};
+  onOfferHover: (offerId: number) => void
+}
 
 function CardMain(props: CardMainProps): JSX.Element {
-  const {id, previewImage, isPremium, price, title, type, isFavorite, rating, onHover, onLeave} = props;
+  const {id, previewImage, isPremium, price, title, type, isFavorite, rating, onOfferHover} = props;
   return (
-    <article className="cities__place-card place-card" onMouseOver={onHover} onMouseOut={onLeave}>
+    <article className="cities__place-card place-card" onMouseEnter={() => onOfferHover(id)}>
       {isPremium ? <div className="place-card__mark"><span>Premium</span></div> : null}
       <div className="cities__image-wrapper place-card__image-wrapper">
         <Link to={`/offer/${id}`}>

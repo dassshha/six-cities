@@ -1,18 +1,16 @@
 import {CardMain} from '../card-main/card-main';
-import {useState} from 'react';
 import {OffersList} from '../../types/offers-list';
 
 type OffersListMainProps = {
-  offers: OffersList
+  offers: OffersList,
+  onOfferHover: (offerId: number) => void
 }
 
-function OffersListMain({offers}: OffersListMainProps): JSX.Element {
-  const [hoveredCard, setHoveredCard] = useState(0);
+function OffersListMain({offers, onOfferHover}: OffersListMainProps): JSX.Element {
 
   return (
     <div className="cities__places-list places__list tabs__content" >
-      {offers.map((offer) => <CardMain {...offer} key={offer.id} onHover={() => setHoveredCard(offer.id)} onLeave={() => setHoveredCard(0)}/>)}
-      <h1>{hoveredCard}</h1>
+      {offers.map((offer) => <CardMain {...offer} key={offer.id} onOfferHover={onOfferHover}/>)}
     </div>
   );
 }

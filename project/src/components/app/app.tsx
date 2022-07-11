@@ -7,17 +7,19 @@ import {RoomScreen} from '../../pages/room-screen/room-screen';
 import {PageNotFoundScreen} from '../../pages/page-not-found-screen/page-not-found-screen';
 import {PrivateRoute} from '../private-route/private-route';
 import {OffersList} from '../../types/offers-list';
+import {City} from '../../types/city';
 
 type AppProps = {
-  offers: OffersList
+  offers: OffersList,
+  city: City
 };
 
 function App(props: AppProps): JSX.Element {
-  const {offers} = props;
+  const {offers, city} = props;
   return (
     <BrowserRouter>
       <Routes>
-        <Route path={AppRoute.Main} element={<MainScreen offers={offers}/>} />
+        <Route path={AppRoute.Main} element={<MainScreen offers={offers} city={city}/>} />
         <Route path={AppRoute.SignIn} element={<SignInScreen/>} />
         <Route path={AppRoute.Favorites} element={
           <PrivateRoute authStatus={AuthStatus.Auth}>
