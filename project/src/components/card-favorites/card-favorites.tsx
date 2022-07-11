@@ -1,11 +1,12 @@
 import {Offer} from '../../types/offer';
 import {Rating} from '../rating/rating';
+import {Premium} from '../premium/premium';
 
 function CardFavorites(props: Offer): JSX.Element {
   const {previewImage, isPremium, price, title, type, isFavorite, rating} = props;
   return (
     <article className="favorites__card place-card">
-      {isPremium ? <div className="place-card__mark"><span>Premium</span></div> : null}
+      <Premium className='place-card' isPremium={isPremium}/>
       <div className="favorites__image-wrapper place-card__image-wrapper">
         <a href="#">
           <img className="place-card__image" src={previewImage} width="150" height="110" alt="Place image"/>

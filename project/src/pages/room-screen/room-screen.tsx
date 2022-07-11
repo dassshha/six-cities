@@ -5,6 +5,7 @@ import {Offer} from '../../types/offer';
 import {ReviewsListType} from '../../types/reviews-list-type';
 import {Goods} from '../../components/goods/goods';
 import {Host} from '../../components/host/host';
+import {Premium} from '../../components/premium/premium';
 
 type RoomScreenProps = {
   offer: Offer,
@@ -45,10 +46,7 @@ function RoomScreen({offer, reviews}: RoomScreenProps): JSX.Element {
           <RoomGallery images={offer.images}/>
           <div className="property__container container">
             <div className="property__wrapper">
-
-              <div className="property__mark">
-                <span>Premium</span>
-              </div>
+              <Premium className='property' isPremium={offer.isPremium}/>
               <div className="property__name-wrapper">
                 <h1 className="property__name">
                   {offer.title}
