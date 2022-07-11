@@ -24,7 +24,7 @@ function CardMain(props: CardMainProps): JSX.Element {
             <b className="place-card__price-value">&euro;{price}</b>
             <span className="place-card__price-text">&#47;&nbsp;night</span>
           </div>
-          <Favorite className='place-card' isFavorite={isFavorite}/>
+          <Favorite className='place-card' isFavorite={isFavorite} size={{width: 18, height: 19}}/>
         </div>
         <div className="place-card__rating rating">
           <Rating className='place-card' value={rating}/>

@@ -53,7 +53,7 @@ function RoomScreen({offer, reviews}: RoomScreenProps): JSX.Element {
                 <h1 className="property__name">
                   {offer.title}
                 </h1>
-                <Favorite className='property' isFavorite={offer.isFavorite}/>
+                <Favorite className='property' isFavorite={offer.isFavorite} size={{width: 31, height: 33}}/>
               </div>
               <div className="property__rating rating">
                 <Rating className='property' value={offer.rating}/>
