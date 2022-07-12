@@ -19,6 +19,12 @@ export const RATING = {
   'TERRIBLY': {title: 'terribly', value: 1}
 };
 
+export const LIST_TYPE = {
+  MAIN : 'MAIN',
+  FAVORITES: 'FAVORITES',
+  NEAR: 'NEAR'
+};
+
 export const URL_MARKER_DEFAULT =
   'https://assets.htmlacademy.ru/content/intensive/javascript-1/demo/interactive-map/pin.svg';
 

@@ -3,6 +3,8 @@ import {OffersListType} from '../../types/offers-list-type';
 import {MyMap} from '../../components/map/my-map';
 import {CityType} from '../../types/city-type';
 import {useState} from 'react';
+import {OffersList} from '../../components/offers-list/offers-list';
+import {LIST_TYPE} from '../../const';
 // import {Offer} from '../../types/offer';
 
 type MainScreenProps = {
@@ -102,10 +104,12 @@ function MainScreen(props: MainScreenProps): JSX.Element {
                   <li className="places__option" tabIndex={0}>Top rated first</li>
                 </ul>
               </form>
+              {/*<OffersListMain offers={offers} onOfferHover={onOfferHover}/>*/}
               <OffersListMain offers={offers} onOfferHover={onOfferHover}/>
+              {/*<OffersList offers={offers} type={LIST_TYPE.MAIN} onOfferHover={onOfferHover}/>*/}
             </section>
             <div className="cities__right-section">
-              <MyMap points={offers} selectedPoint={hoveredOfferId} city={city}/>
+              <MyMap points={offers} selectedPoint={hoveredOfferId} city={city} className='cities'/>
             </div>
           </div>
         </div>

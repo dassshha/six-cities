@@ -1,5 +1,7 @@
 import {OffersListFavorites} from '../../components/offers-list-favorites/offers-list-favorites';
 import {offers} from '../../mocks/offers';
+import {OffersList} from '../../components/offers-list/offers-list';
+import {LIST_TYPE} from '../../const';
 
 function FavoritesScreen(): JSX.Element {
   return (
@@ -45,6 +47,7 @@ function FavoritesScreen(): JSX.Element {
                     </a>
                   </div>
                 </div>
+                {/*<OffersListFavorites offers={offers}/>*/}
                 <OffersListFavorites offers={offers}/>
               </li>
 
@@ -57,6 +60,8 @@ function FavoritesScreen(): JSX.Element {
                   </div>
                 </div>
                 <OffersListFavorites offers={offers}/>
+                {/*<OffersListFavorites offers={offers}/>*/}
+                {/*<OffersList offers={offers} type={LIST_TYPE.FAVORITES}/>*/}
               </li>
             </ul>
           </section>
