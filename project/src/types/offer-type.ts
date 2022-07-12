@@ -1,11 +1,4 @@
-type City = {
-  'location': {
-    'latitude': number,
-    'longitude': number,
-    'zoom': number
-  },
-  'name': string
-}
+import {CityType} from './city-type';
 
 export type HostType = {
   'avatarUrl': string,
@@ -14,15 +7,15 @@ export type HostType = {
   'name': string
 }
 
-type Location = {
+type LocationType = {
   'latitude': number,
   'longitude': number,
   'zoom': number
 }
 
-export type Offer = {
+export type OfferType = {
   'bedrooms': number,
-  'city': City,
+  'city': CityType,
   'description': string,
   'goods': string[],
   'host': HostType,
@@ -30,7 +23,7 @@ export type Offer = {
   'images': string[],
   'isFavorite': boolean,
   'isPremium': boolean,
-  'location': Location,
+  'location': LocationType,
   'maxAdults': number,
   'previewImage': string,
   'price': number,

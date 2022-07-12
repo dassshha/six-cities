@@ -1,4 +1,4 @@
-import {HostType} from '../../types/offer';
+import {HostType} from '../../types/offer-type';
 
 type HostProps = {
   host: HostType

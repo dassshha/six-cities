@@ -1,10 +1,10 @@
-import {Offer} from '../../types/offer';
+import {OfferType} from '../../types/offer-type';
 import {Link} from 'react-router-dom';
 import {Rating} from '../rating/rating';
 import {Premium} from '../premium/premium';
 import {Favorite} from '../favorite/favorite';
 
-type CardMainProps = Offer & {
+type CardMainProps = OfferType & {
   onOfferHover: (offerId: number) => void
 }
 

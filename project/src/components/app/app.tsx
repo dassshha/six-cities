@@ -6,12 +6,12 @@ import {FavoritesScreen} from '../../pages/favorites-screen/favorites-screen';
 import {RoomScreen} from '../../pages/room-screen/room-screen';
 import {PageNotFoundScreen} from '../../pages/page-not-found-screen/page-not-found-screen';
 import {PrivateRoute} from '../private-route/private-route';
-import {OffersList} from '../../types/offers-list';
+import {OffersListType} from '../../types/offers-list-type';
 import {CityType} from '../../types/city-type';
 import {ReviewsListType} from '../../types/reviews-list-type';
 
 type AppProps = {
-  offers: OffersList,
+  offers: OffersListType,
   reviews: ReviewsListType
   city: CityType
 };

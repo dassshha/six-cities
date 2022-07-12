@@ -1,12 +1,12 @@
 import {OffersListMain} from '../../components/offers-list-main/offers-list-main';
-import {OffersList} from '../../types/offers-list';
+import {OffersListType} from '../../types/offers-list-type';
 import {MyMap} from '../../components/map/my-map';
 import {CityType} from '../../types/city-type';
 import {useState} from 'react';
 // import {Offer} from '../../types/offer';
 
 type MainScreenProps = {
-  offers: OffersList,
+  offers: OffersListType,
   city: CityType
 }
 

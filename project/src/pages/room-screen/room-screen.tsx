@@ -1,7 +1,7 @@
 import {ReviewForm} from '../../components/review-form/review-form';
 import {ReviewsList} from '../../components/reviews-list/reviews-list';
 import {RoomGallery} from '../../components/room-gallery/room-gallery';
-import {Offer} from '../../types/offer';
+import {OfferType} from '../../types/offer-type';
 import {ReviewsListType} from '../../types/reviews-list-type';
 import {Goods} from '../../components/goods/goods';
 import {Host} from '../../components/host/host';
@@ -10,7 +10,7 @@ import {Favorite} from '../../components/favorite/favorite';
 import {Rating} from '../../components/rating/rating';
 
 type RoomScreenProps = {
-  offer: Offer,
+  offer: OfferType,
  reviews: ReviewsListType,
 };
 

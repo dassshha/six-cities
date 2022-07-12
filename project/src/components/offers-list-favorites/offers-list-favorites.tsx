@@ -1,8 +1,8 @@
 import {CardFavorites} from '../card-favorites/card-favorites';
-import {OffersList} from '../../types/offers-list';
+import {OffersListType} from '../../types/offers-list-type';
 
 type OffersListFavoritesProps = {
-  offers: OffersList
+  offers: OffersListType
 }
 
 function OffersListFavorites({offers}: OffersListFavoritesProps): JSX.Element {

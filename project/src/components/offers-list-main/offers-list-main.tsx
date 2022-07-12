@@ -1,8 +1,8 @@
 import {CardMain} from '../card-main/card-main';
-import {OffersList} from '../../types/offers-list';
+import {OffersListType} from '../../types/offers-list-type';
 
 type OffersListMainProps = {
-  offers: OffersList,
+  offers: OffersListType,
   onOfferHover: (offerId: number) => void
 }
 

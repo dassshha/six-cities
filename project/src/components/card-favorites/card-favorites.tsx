@@ -1,9 +1,9 @@
-import {Offer} from '../../types/offer';
+import {OfferType} from '../../types/offer-type';
 import {Rating} from '../rating/rating';
 import {Premium} from '../premium/premium';
 import {Favorite} from '../favorite/favorite';
 
-function CardFavorites(props: Offer): JSX.Element {
+function CardFavorites(props: OfferType): JSX.Element {
   const {previewImage, isPremium, price, title, type, isFavorite, rating} = props;
   return (
     <article className="favorites__card place-card">
