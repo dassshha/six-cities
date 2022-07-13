@@ -1,7 +1,5 @@
 import {OffersListFavorites} from '../../components/offers-list-favorites/offers-list-favorites';
 import {offers} from '../../mocks/offers';
-import {OffersList} from '../../components/offers-list/offers-list';
-import {LIST_TYPE} from '../../const';
 import {Header} from '../../components/header/header';
 
 function FavoritesScreen(): JSX.Element {

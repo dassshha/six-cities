@@ -2,7 +2,6 @@ import {OffersListType} from '../../types/offers-list-type';
 import {OfferType} from '../../types/offer-type';
 import {LIST_TYPE} from '../../const';
 import {CardMain} from '../card-main/card-main';
-import {offers} from '../../mocks/offers';
 import {CardFavorites} from '../card-favorites/card-favorites';
 import {CardNear} from '../card-near/card-near';
 
@@ -16,11 +15,11 @@ type OffersListProps = {
 function getElementByType(type: string, offer: OfferType, onOfferHover?: (offerId: number) => void) {
   switch (type) {
     case LIST_TYPE.MAIN:
-      return onOfferHover && <CardMain {...offer} key={offer.id} onOfferHover={onOfferHover}/>
+      return onOfferHover && <CardMain {...offer} key={offer.id} onOfferHover={onOfferHover}/>;
     case LIST_TYPE.NEAR:
-      return <CardNear key={offer.id}/>
+      return <CardNear key={offer.id}/>;
   }
-  return offer.isFavorite && <CardFavorites {...offer} key={offer.id}/>
+  return offer.isFavorite && <CardFavorites {...offer} key={offer.id}/>;
 }
 
 function OffersList({className, type, onOfferHover, offers}:OffersListProps): JSX.Element {

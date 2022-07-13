@@ -3,10 +3,8 @@ import {OffersListType} from '../../types/offers-list-type';
 import {MyMap} from '../../components/map/my-map';
 import {CityType} from '../../types/city-type';
 import {useState} from 'react';
-import {OffersList} from '../../components/offers-list/offers-list';
-import {LIST_TYPE} from '../../const';
 import {Header} from '../../components/header/header';
-// import {Offer} from '../../types/offer';
+
 
 type MainScreenProps = {
   offers: OffersListType,

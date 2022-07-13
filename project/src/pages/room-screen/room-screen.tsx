@@ -1,7 +1,6 @@
 import {ReviewForm} from '../../components/review-form/review-form';
 import {ReviewsList} from '../../components/reviews-list/reviews-list';
 import {RoomGallery} from '../../components/room-gallery/room-gallery';
-import {OfferType} from '../../types/offer-type';
 import {ReviewsListType} from '../../types/reviews-list-type';
 import {Goods} from '../../components/goods/goods';
 import {Host} from '../../components/host/host';
@@ -24,7 +23,7 @@ type RoomScreenProps = {
 
 function RoomScreen({reviews, offersNear, city, offers}: RoomScreenProps): JSX.Element {
   const {id} = useParams();
-  const offer = offers.filter((offer) => offer.id === Number(id))[0];
+  const offer = offers.filter((off) => off.id === Number(id))[0];
   return (
     <div className="page">
       <Header/>
@@ -81,7 +80,7 @@ function RoomScreen({reviews, offersNear, city, offers}: RoomScreenProps): JSX.E
               </section>
             </div>
           </div>
-            <MyMap points={offersNear} selectedPoint={offer.id} city={city} className='property'/>
+          <MyMap points={offersNear} selectedPoint={offer.id} city={city} className='property'/>
         </section>
         <div className="container">
           <section className="near-places places">
