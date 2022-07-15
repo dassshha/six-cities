@@ -8,3 +8,12 @@ export const city: CityType = {
   },
   'name': 'Amsterdam'
 };
+
+export const Paris: CityType = {
+  'location': {
+    'latitude': 48.8534100,
+    'longitude': 2.3488000,
+    'zoom': 10
+  },
+  'name': 'Paris'
+};
