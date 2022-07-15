@@ -10,3 +10,5 @@ const initialState: StateType = {
 function reducer(state: StateType = initialState, action: ActionsType): StateType {
   return state;
 }
+
+export {reducer};
