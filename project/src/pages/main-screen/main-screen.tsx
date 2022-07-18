@@ -1,18 +1,40 @@
 import {OffersListMain} from '../../components/offers-list-main/offers-list-main';
 import {OffersListType} from '../../types/offers-list-type';
-import {MyMap} from '../../components/map/my-map';
-import {CityType} from '../../types/city-type';
 import {useState} from 'react';
 import {Header} from '../../components/header/header';
-
+import {CitiesListType} from '../../types/cities-list-type';
+import {StateType} from '../../types/state-type';
+import {connect, ConnectedProps} from 'react-redux';
+import CitiesListConnected from '../../components/cities-list/cities-list';
+import {Map} from '../../components/map/map';
+// import {CityType} from '../../types/city-type';
+// import {CitiesList} from '../../components/cities-list/cities-list';
+// import {bindActionCreators, Dispatch} from 'redux';
+// import {ActionsType} from '../../types/action-type';
+// import {changeCity} from '../../store/action';
 
 type MainScreenProps = {
   offers: OffersListType,
-  city: CityType
+  cities: CitiesListType
+  // city: CityType
 }
 
-function MainScreen(props: MainScreenProps): JSX.Element {
-  const {offers, city} = props;
+function mapStateToProps({city}: StateType) {
+  return {city};
+}
+
+// function mapDispatchToProps(dispatch: Dispatch<ActionsType>) {
+//   return bindActionCreators({
+//     onCityClick: changeCity
+//   }, dispatch);
+// }
+
+const connector = connect(mapStateToProps);
+
+type PropsFromRedux = ConnectedProps<typeof connector>;
+type ConnectedComponentProps = MainScreenProps & PropsFromRedux;
+
+function MainScreen({offers, cities, city}: ConnectedComponentProps): JSX.Element {
   const [hoveredOfferId, setHoveredOfferId] = useState<number | undefined>(undefined);
 
   const onOfferHover = (offerId: number) => setHoveredOfferId(offerId);
@@ -23,38 +45,7 @@ function MainScreen(props: MainScreenProps): JSX.Element {
         <h1 className="visually-hidden">Cities</h1>
         <div className="tabs">
           <section className="locations container">
-            <ul className="locations__list tabs__list">
-              <li className="locations__item">
-                <a className="locations__item-link tabs__item" href="#">
-                  <span>Paris</span>
-                </a>
-              </li>
-              <li className="locations__item">
-                <a className="locations__item-link tabs__item" href="#">
-                  <span>Cologne</span>
-                </a>
-              </li>
-              <li className="locations__item">
-                <a className="locations__item-link tabs__item" href="#">
-                  <span>Brussels</span>
-                </a>
-              </li>
-              <li className="locations__item">
-                <a className="locations__item-link tabs__item tabs__item--active">
-                  <span>Amsterdam</span>
-                </a>
-              </li>
-              <li className="locations__item">
-                <a className="locations__item-link tabs__item" href="#">
-                  <span>Hamburg</span>
-                </a>
-              </li>
-              <li className="locations__item">
-                <a className="locations__item-link tabs__item" href="#">
-                  <span>Dusseldorf</span>
-                </a>
-              </li>
-            </ul>
+            <CitiesListConnected cities={cities} activeCity={city}/>
           </section>
         </div>
         <div className="cities">
@@ -82,7 +73,9 @@ function MainScreen(props: MainScreenProps): JSX.Element {
               {/*<OffersList offers={offers} type={LIST_TYPE.MAIN} onOfferHover={onOfferHover}/>*/}
             </section>
             <div className="cities__right-section">
-              <MyMap points={offers} selectedPoint={hoveredOfferId} city={city} className='cities'/>
+              <section className="cities__map map">
+                <Map city={city} points={offers} selectedPoint={hoveredOfferId}/>
+              </section>
             </div>
           </div>
         </div>
@@ -92,3 +85,4 @@ function MainScreen(props: MainScreenProps): JSX.Element {
 }
 
 export {MainScreen};
+export default connector(MainScreen);

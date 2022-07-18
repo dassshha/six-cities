@@ -9,10 +9,10 @@ import {Favorite} from '../../components/favorite/favorite';
 import {Rating} from '../../components/rating/rating';
 import {OffersListNear} from '../../components/offers-list-near/offers-list-near';
 import {OffersListType} from '../../types/offers-list-type';
-import {MyMap} from '../../components/map/my-map';
 import {CityType} from '../../types/city-type';
 import {Header} from '../../components/header/header';
 import {useParams} from 'react-router-dom';
+import {Map} from '../../components/map/map';
 
 type RoomScreenProps = {
   offers: OffersListType,
@@ -80,7 +80,9 @@ function RoomScreen({reviews, offersNear, city, offers}: RoomScreenProps): JSX.E
               </section>
             </div>
           </div>
-          <MyMap points={offersNear} selectedPoint={offer.id} city={city} className='property'/>
+          <section className="property__map map">
+            <Map city={city} points={offersNear} selectedPoint={offer.id}/>
+          </section>
         </section>
         <div className="container">
           <section className="near-places places">
