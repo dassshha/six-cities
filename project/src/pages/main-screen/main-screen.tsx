@@ -7,6 +7,7 @@ import {StateType} from '../../types/state-type';
 import {connect, ConnectedProps} from 'react-redux';
 import CitiesListConnected from '../../components/cities-list/cities-list';
 import {Map} from '../../components/map/map';
+import {getOffersInCity} from '../../offers-in-city';
 // import {CityType} from '../../types/city-type';
 // import {CitiesList} from '../../components/cities-list/cities-list';
 // import {bindActionCreators, Dispatch} from 'redux';
@@ -14,13 +15,12 @@ import {Map} from '../../components/map/map';
 // import {changeCity} from '../../store/action';
 
 type MainScreenProps = {
-  offers: OffersListType,
   cities: CitiesListType
   // city: CityType
 }
 
-function mapStateToProps({city}: StateType) {
-  return {city};
+function mapStateToProps({city, offers}: StateType) {
+  return {city, offers};
 }
 
 // function mapDispatchToProps(dispatch: Dispatch<ActionsType>) {
@@ -37,6 +37,8 @@ type ConnectedComponentProps = MainScreenProps & PropsFromRedux;
 function MainScreen({offers, cities, city}: ConnectedComponentProps): JSX.Element {
   const [hoveredOfferId, setHoveredOfferId] = useState<number | undefined>(undefined);
 
+  const offersInCity = getOffersInCity(city, offers);
+
   const onOfferHover = (offerId: number) => setHoveredOfferId(offerId);
   return (
     <div className="page page--gray page--main">
@@ -52,7 +54,7 @@ function MainScreen({offers, cities, city}: ConnectedComponentProps): JSX.Elemen
           <div className="cities__places-container container">
             <section className="cities__places places">
               <h2 className="visually-hidden">Places</h2>
-              <b className="places__found">312 places to stay in Amsterdam</b>
+              <b className="places__found">{offersInCity.length} places to stay in {city.name}</b>
               <form className="places__sorting" action="#" method="get">
                 <span className="places__sorting-caption">Sort by</span>
                 <span className="places__sorting-type" tabIndex={0}>
@@ -69,12 +71,12 @@ function MainScreen({offers, cities, city}: ConnectedComponentProps): JSX.Elemen
                 </ul>
               </form>
               {/*<OffersListMain offers={offers} onOfferHover={onOfferHover}/>*/}
-              <OffersListMain offers={offers} onOfferHover={onOfferHover}/>
+              <OffersListMain offers={offersInCity} onOfferHover={onOfferHover}/>
               {/*<OffersList offers={offers} type={LIST_TYPE.MAIN} onOfferHover={onOfferHover}/>*/}
             </section>
             <div className="cities__right-section">
               <section className="cities__map map">
-                <Map city={city} points={offers} selectedPoint={hoveredOfferId}/>
+                <Map city={city} points={offersInCity} selectedPoint={hoveredOfferId}/>
               </section>
             </div>
           </div>
