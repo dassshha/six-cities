@@ -25,6 +25,14 @@ export const LIST_TYPE = {
   NEAR: 'NEAR'
 };
 
+export const SORT_TYPE = {
+  DEFAULT: 'Popular',
+  PRICE: {
+    LOW_TO_HIGH: 'Price: low to high',
+    HIGH_TO_LOW: 'Price: high to low'
+  },
+  TOP_RATED_FIRST: 'Top rated first'
+};
 export const URL_MARKER_DEFAULT =
   'https://assets.htmlacademy.ru/content/intensive/javascript-1/demo/interactive-map/pin.svg';
 

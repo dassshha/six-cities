@@ -1,5 +1,5 @@
 import {OffersListMain} from '../../components/offers-list-main/offers-list-main';
-import {OffersListType} from '../../types/offers-list-type';
+// import {OffersListType} from '../../types/offers-list-type';
 import {useState} from 'react';
 import {Header} from '../../components/header/header';
 import {CitiesListType} from '../../types/cities-list-type';
@@ -8,6 +8,9 @@ import {connect, ConnectedProps} from 'react-redux';
 import CitiesListConnected from '../../components/cities-list/cities-list';
 import {Map} from '../../components/map/map';
 import {getOffersInCity} from '../../offers-in-city';
+// import {Sort} from '../../components/sort/sort';
+import SortConnected from '../../components/sort/sort';
+import {sortOffers} from '../../sort-offers';
 // import {CityType} from '../../types/city-type';
 // import {CitiesList} from '../../components/cities-list/cities-list';
 // import {bindActionCreators, Dispatch} from 'redux';
@@ -19,8 +22,8 @@ type MainScreenProps = {
   // city: CityType
 }
 
-function mapStateToProps({city, offers}: StateType) {
-  return {city, offers};
+function mapStateToProps({city, offers, sortType}: StateType) {
+  return {city, offers, sortType};
 }
 
 // function mapDispatchToProps(dispatch: Dispatch<ActionsType>) {
@@ -34,10 +37,12 @@ const connector = connect(mapStateToProps);
 type PropsFromRedux = ConnectedProps<typeof connector>;
 type ConnectedComponentProps = MainScreenProps & PropsFromRedux;
 
-function MainScreen({offers, cities, city}: ConnectedComponentProps): JSX.Element {
+function MainScreen({offers, cities, city, sortType}: ConnectedComponentProps): JSX.Element {
   const [hoveredOfferId, setHoveredOfferId] = useState<number | undefined>(undefined);
+  const [isSortListOpened, setIsSortListOpened] = useState(false);
 
-  const offersInCity = getOffersInCity(city, offers);
+  const offersInCity = sortOffers(sortType, getOffersInCity(city, offers));
+
 
   const onOfferHover = (offerId: number) => setHoveredOfferId(offerId);
   return (
@@ -57,18 +62,13 @@ function MainScreen({offers, cities, city}: ConnectedComponentProps): JSX.Elemen
               <b className="places__found">{offersInCity.length} places to stay in {city.name}</b>
               <form className="places__sorting" action="#" method="get">
                 <span className="places__sorting-caption">Sort by</span>
-                <span className="places__sorting-type" tabIndex={0}>
-                  Popular
+                <span className="places__sorting-type" tabIndex={0} onClick={() => setIsSortListOpened(!isSortListOpened)}>
+                  {sortType}
                   <svg className="places__sorting-arrow" width="7" height="4">
                     <use xlinkHref="#icon-arrow-select"></use>
                   </svg>
                 </span>
-                <ul className="places__options places__options--custom places__options--opened">
-                  <li className="places__option places__option--active" tabIndex={0}>Popular</li>
-                  <li className="places__option" tabIndex={0}>Price: low to high</li>
-                  <li className="places__option" tabIndex={0}>Price: high to low</li>
-                  <li className="places__option" tabIndex={0}>Top rated first</li>
-                </ul>
+                <SortConnected activeSortType={sortType} isOpened={isSortListOpened}/>
               </form>
               {/*<OffersListMain offers={offers} onOfferHover={onOfferHover}/>*/}
               <OffersListMain offers={offersInCity} onOfferHover={onOfferHover}/>

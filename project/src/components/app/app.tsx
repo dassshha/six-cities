@@ -11,7 +11,6 @@ import {CityType} from '../../types/city-type';
 import {ReviewsListType} from '../../types/reviews-list-type';
 import {CitiesListType} from '../../types/cities-list-type';
 import MainScreenConnected from '../../pages/main-screen/main-screen';
-// import {Map, TestMap} from '../map/map';
 
 type AppProps = {
   offers: OffersListType,
