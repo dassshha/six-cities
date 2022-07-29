@@ -1,11 +1,12 @@
 import {
   ActionType, ChangeAuthStatusActionType,
   ChangeCityActionType,
-  ChangeSortActionType,
+  ChangeSortActionType, LoadCurrentOfferActionType,
   LoadOffersActionType
 } from '../types/action-type';
 import {CityType} from '../types/city-type';
 import {OffersListType} from '../types/offers-list-type';
+import {OfferType} from '../types/offer-type';
 
 function changeCity(city: CityType): ChangeCityActionType {
   return {
@@ -28,6 +29,13 @@ function loadOffers(offers: OffersListType): LoadOffersActionType {
   };
 }
 
+function loadCurrentOffer(offer: OfferType): LoadCurrentOfferActionType {
+  return {
+    type: ActionType.LoadCurrentOffer,
+    payload: offer
+  };
+}
+
 function changeAuthStatus(status: string): ChangeAuthStatusActionType {
   return {
     type: ActionType.ChangeAuthStatus,
@@ -35,4 +43,4 @@ function changeAuthStatus(status: string): ChangeAuthStatusActionType {
   };
 }
 
-export {changeCity, loadOffers, changeSortType, changeAuthStatus};
+export {changeCity, loadOffers, changeSortType, changeAuthStatus, loadCurrentOffer};

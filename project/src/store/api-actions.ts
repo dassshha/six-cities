@@ -1,10 +1,11 @@
 import {ThunkActionResult} from '../types/action-type';
 import {OffersListType} from '../types/offers-list-type';
 import {APIRoute, AuthStatus} from '../const';
-import {changeAuthStatus, loadOffers} from './action';
+import {changeAuthStatus, loadCurrentOffer, loadOffers} from './action';
 import {AxiosError} from 'axios';
 import {AuthType} from '../types/auth-type';
 import {dropToken, saveToken, Token} from '../services/token';
+import {OfferType} from '../types/offer-type';
 const enum HttpCode {
   Unauthorized= 401
 }
@@ -44,5 +45,12 @@ export function logout(): ThunkActionResult {
     await api.delete(APIRoute.Logout);
     dropToken();
     dispatch(changeAuthStatus(AuthStatus.NoAuth));
+  };
+}
+
+export function fetchCurrentOffer(id: number): ThunkActionResult {
+  return async function (dispatch, _getState, api) {
+    const {data} = await api.get<OfferType>(`${APIRoute.Hotels}/${id}`);
+    dispatch(loadCurrentOffer(data));
   };
 }

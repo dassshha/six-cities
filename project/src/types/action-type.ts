@@ -3,10 +3,12 @@ import {OffersListType} from './offers-list-type';
 import {ThunkAction, ThunkDispatch} from 'redux-thunk';
 import {StateType} from './state-type';
 import {AxiosInstance} from 'axios';
+import {OfferType} from './offer-type';
 
 export enum ActionType {
   ChangeCity = 'app/changeCity',
   LoadOffers = 'data/loadOffers',
+  LoadCurrentOffer = 'data/loadCurrentOffer',
   ChangeSort = 'app/changeSort',
   ChangeAuthStatus = 'user/changeAuthStatus'
 }
@@ -26,12 +28,17 @@ export type LoadOffersActionType = {
   payload: OffersListType
 }
 
+export type LoadCurrentOfferActionType = {
+  type: ActionType.LoadCurrentOffer,
+  payload: OfferType
+}
+
 export type ChangeAuthStatusActionType = {
   type: ActionType.ChangeAuthStatus,
   payload: string
 }
 
-export type ActionsType = ChangeCityActionType | LoadOffersActionType | ChangeSortActionType | ChangeAuthStatusActionType;
+export type ActionsType = ChangeCityActionType | LoadOffersActionType | ChangeSortActionType | ChangeAuthStatusActionType | LoadCurrentOfferActionType;
 
 export type ThunkActionResult<R = Promise<void>> = ThunkAction<R, StateType, AxiosInstance, ActionsType>;
 export type ThunkAppDispatch = ThunkDispatch<StateType, AxiosInstance, ActionsType>;

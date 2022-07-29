@@ -13,17 +13,46 @@ import {CityType} from '../../types/city-type';
 import {Header} from '../../components/header/header';
 import {useParams} from 'react-router-dom';
 import {Map} from '../../components/map/map';
+import {useEffect} from 'react';
+import {StateType} from '../../types/state-type';
+import {connect, ConnectedProps} from 'react-redux';
+import {bindActionCreators, Dispatch} from 'redux';
+import {ActionsType} from '../../types/action-type';
+import {fetchCurrentOffer} from '../../store/api-actions';
+import {LoadingScreen} from '../loading-screen/loading-screen';
 
 type RoomScreenProps = {
   offers: OffersListType,
- reviews: ReviewsListType,
+  reviews: ReviewsListType,
   offersNear: OffersListType,
-  city: CityType
 };
 
-function RoomScreen({reviews, offersNear, city, offers}: RoomScreenProps): JSX.Element {
+function mapStateToProps({city, currentOffer}: StateType) {
+  return {city, offer: currentOffer};
+}
+
+function mapDispatchToProps(dispatch: Dispatch<ActionsType>) {
+  return bindActionCreators({
+    loadCurrentOffer: fetchCurrentOffer
+  }, dispatch);
+}
+
+const connector = connect(mapStateToProps, mapDispatchToProps);
+
+type PropsFromRedux = ConnectedProps<typeof connector>;
+type ConnectedComponentProps = RoomScreenProps & PropsFromRedux;
+
+function RoomScreen({reviews, offersNear, city, offers, loadCurrentOffer, offer}: ConnectedComponentProps): JSX.Element {
   const {id} = useParams();
-  const offer = offers.filter((off) => off.id === Number(id))[0];
+
+  useEffect(() => {
+    loadCurrentOffer(Number(id));
+  }, [id]);
+
+  if (!Object.entries(offer).length) {
+    return <LoadingScreen/>
+  }
+
   return (
     <div className="page">
       {/*<Header/>*/}
@@ -96,3 +125,4 @@ function RoomScreen({reviews, offersNear, city, offers}: RoomScreenProps): JSX.E
 }
 
 export {RoomScreen};
+export default connector(RoomScreen);
