@@ -25,12 +25,12 @@ type ConnectedComponentProps = CitiesListProps & PropsFromRedux;
 function CitiesList({activeCity, cities, onCityClick}: ConnectedComponentProps): JSX.Element {
   return (
     <ul className="locations__list tabs__list">
-      {cities.map((city) =>
+      {cities.map((city) => (
         <li key={city.name} className="locations__item" onClick={() => onCityClick(city)}>
-        <a className={`locations__item-link tabs__item ${compareCities(activeCity, city) && 'tabs__item--active'}`} href="#">
-          <span>{city.name}</span>
-        </a>
-      </li>)}
+          <a className={`locations__item-link tabs__item ${compareCities(activeCity, city) && 'tabs__item--active'}`} href="#">
+            <span>{city.name}</span>
+          </a>
+        </li>))}
     </ul>
   );
 }

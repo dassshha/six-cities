@@ -7,7 +7,8 @@ import {AxiosInstance} from 'axios';
 export enum ActionType {
   ChangeCity = 'app/changeCity',
   LoadOffers = 'data/loadOffers',
-  ChangeSort = 'app/changeSort'
+  ChangeSort = 'app/changeSort',
+  ChangeAuthStatus = 'user/changeAuthStatus'
 }
 
 export type ChangeCityActionType = {
@@ -25,7 +26,12 @@ export type LoadOffersActionType = {
   payload: OffersListType
 }
 
-export type ActionsType = ChangeCityActionType | LoadOffersActionType | ChangeSortActionType;
+export type ChangeAuthStatusActionType = {
+  type: ActionType.ChangeAuthStatus,
+  payload: string
+}
+
+export type ActionsType = ChangeCityActionType | LoadOffersActionType | ChangeSortActionType | ChangeAuthStatusActionType;
 
 export type ThunkActionResult<R = Promise<void>> = ThunkAction<R, StateType, AxiosInstance, ActionsType>;
 export type ThunkAppDispatch = ThunkDispatch<StateType, AxiosInstance, ActionsType>;

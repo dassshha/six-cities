@@ -1,11 +1,12 @@
 // import {MainScreen} from '../../pages/main-screen/main-screen';
 import {BrowserRouter, Route, Routes} from 'react-router-dom';
-import {AppRoute, AuthStatus} from '../../const';
-import {SignInScreen} from '../../pages/sign-in-screen/sign-in-screen';
+import {AppRoute} from '../../const';
+// import {SignInScreen} from '../../pages/sign-in-screen/sign-in-screen';
+import SignInConnected from '../../pages/sign-in-screen/sign-in-screen';
 import {FavoritesScreen} from '../../pages/favorites-screen/favorites-screen';
 // import {RoomScreen} from '../../pages/room-screen/room-screen';
 import {PageNotFoundScreen} from '../../pages/page-not-found-screen/page-not-found-screen';
-import {PrivateRoute} from '../private-route/private-route';
+// import {PrivateRoute} from '../private-route/private-route';
 // import {OffersListType} from '../../types/offers-list-type';
 // import {CityType} from '../../types/city-type';
 // import {ReviewsListType} from '../../types/reviews-list-type';
@@ -14,6 +15,8 @@ import MainScreenConnected from '../../pages/main-screen/main-screen';
 import {StateType} from '../../types/state-type';
 import {connect, ConnectedProps} from 'react-redux';
 import {LoadingScreen} from '../../pages/loading-screen/loading-screen';
+import PrivateRouteConnected from '../../components/private-route/private-route';
+import {browserHistory} from '../../browser-history';
 
 type AppProps = {
   // offers: OffersListType,
@@ -50,11 +53,11 @@ function App(props: ConnectedComponentProps): JSX.Element {
     <BrowserRouter>
       <Routes>
         <Route path={AppRoute.Main} element={<MainScreenConnected cities={cities}/>} />
-        <Route path={AppRoute.SignIn} element={<SignInScreen/>} />
+        <Route path={AppRoute.SignIn} element={<SignInConnected/>} />
         <Route path={AppRoute.Favorites} element={
-          <PrivateRoute authStatus={AuthStatus.Auth}>
+          <PrivateRouteConnected>
             <FavoritesScreen/>
-          </PrivateRoute>
+          </PrivateRouteConnected>
         }
         />
         {/*<Route path={AppRoute.Room} element={<RoomScreen offers={offers} offersNear={offers} reviews={reviews} city={city}/>}/>*/}

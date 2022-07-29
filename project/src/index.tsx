@@ -12,18 +12,21 @@ import {composeWithDevTools} from 'redux-devtools-extension';
 import {cities} from './mocks/city';
 import {createApi} from './services/api';
 // import {ThunkAppDispatch} from './types/action-type';
-import {fetchOffersList} from './store/api-actions';
+import {checkAuth, fetchOffersList} from './store/api-actions';
+import {changeAuthStatus} from './store/action';
+import {AuthStatus} from './const';
+import {ThunkAppDispatch} from './types/action-type';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement,
 );
 
-const api = createApi();
+const api = createApi(() => store.dispatch(changeAuthStatus(AuthStatus.NoAuth)));
 
 const store = createStore(reducer, composeWithDevTools(applyMiddleware(thunk.withExtraArgument(api))));
 
-store.dispatch(fetchOffersList());
-
+(store.dispatch as ThunkAppDispatch)(checkAuth());
+(store.dispatch as ThunkAppDispatch)(fetchOffersList());
 
 root.render(
   <React.StrictMode>

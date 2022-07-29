@@ -26,7 +26,7 @@ function RoomScreen({reviews, offersNear, city, offers}: RoomScreenProps): JSX.E
   const offer = offers.filter((off) => off.id === Number(id))[0];
   return (
     <div className="page">
-      <Header/>
+      {/*<Header/>*/}
       <main className="page__main page__main--property">
         <section className="property">
           <RoomGallery images={offer.images}/>

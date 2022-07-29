@@ -1,5 +1,5 @@
 import {
-  ActionType,
+  ActionType, ChangeAuthStatusActionType,
   ChangeCityActionType,
   ChangeSortActionType,
   LoadOffersActionType
@@ -28,4 +28,11 @@ function loadOffers(offers: OffersListType): LoadOffersActionType {
   };
 }
 
-export {changeCity, loadOffers, changeSortType};
+function changeAuthStatus(status: string): ChangeAuthStatusActionType {
+  return {
+    type: ActionType.ChangeAuthStatus,
+    payload: status
+  };
+}
+
+export {changeCity, loadOffers, changeSortType, changeAuthStatus};

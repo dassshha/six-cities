@@ -5,5 +5,6 @@ export type StateType = {
   city: CityType,
   offers: OffersListType,
   sortType: string,
-  isDataLoaded: boolean
+  isDataLoaded: boolean,
+  authorizationStatus: string
 }

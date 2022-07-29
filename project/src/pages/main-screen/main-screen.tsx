@@ -1,7 +1,8 @@
 import {OffersListMain} from '../../components/offers-list-main/offers-list-main';
 // import {OffersListType} from '../../types/offers-list-type';
 import {useState} from 'react';
-import {Header} from '../../components/header/header';
+// import {Header} from '../../components/header/header';
+import ConnectedHeader from '../../components/header/header';
 import {CitiesListType} from '../../types/cities-list-type';
 import {StateType} from '../../types/state-type';
 import {connect, ConnectedProps} from 'react-redux';
@@ -47,7 +48,7 @@ function MainScreen({offers, cities, city, sortType}: ConnectedComponentProps): 
   const onOfferHover = (offerId: number) => setHoveredOfferId(offerId);
   return (
     <div className="page page--gray page--main">
-      <Header/>
+      <ConnectedHeader/>
       <main className="page__main page__main--index">
         <h1 className="visually-hidden">Cities</h1>
         <div className="tabs">
