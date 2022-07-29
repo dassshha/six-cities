@@ -63,7 +63,7 @@ function App(props: ConnectedComponentProps): JSX.Element {
           </PrivateRouteConnected>
         }
         />
-        <Route path={AppRoute.Room} element={<RoomScreenConnected offers={offers} offersNear={offers} reviews={reviews}/>}/>
+        <Route path={AppRoute.Room} element={<RoomScreenConnected/>}/>
         <Route path='*' element={<PageNotFoundScreen/>}/>
       </Routes>
     </BrowserRouter>

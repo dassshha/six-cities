@@ -1,12 +1,13 @@
 import {
   ActionType, ChangeAuthStatusActionType,
   ChangeCityActionType,
-  ChangeSortActionType, LoadCurrentOfferActionType,
-  LoadOffersActionType
+  ChangeSortActionType, LoadCommentsActionType, LoadCurrentOfferActionType,
+  LoadOffersActionType, LoadOffersNearByActionType
 } from '../types/action-type';
 import {CityType} from '../types/city-type';
 import {OffersListType} from '../types/offers-list-type';
 import {OfferType} from '../types/offer-type';
+import {ReviewsListType} from '../types/reviews-list-type';
 
 function changeCity(city: CityType): ChangeCityActionType {
   return {
@@ -36,6 +37,20 @@ function loadCurrentOffer(offer: OfferType): LoadCurrentOfferActionType {
   };
 }
 
+function loadOffersNearBy(offers: OffersListType): LoadOffersNearByActionType {
+  return {
+    type: ActionType.LoadOffersNearBy,
+    payload: offers
+  };
+}
+
+function loadComments(comments: ReviewsListType): LoadCommentsActionType {
+  return {
+    type: ActionType.LoadComments,
+    payload: comments
+  };
+}
+
 function changeAuthStatus(status: string): ChangeAuthStatusActionType {
   return {
     type: ActionType.ChangeAuthStatus,
@@ -43,4 +58,4 @@ function changeAuthStatus(status: string): ChangeAuthStatusActionType {
   };
 }
 
-export {changeCity, loadOffers, changeSortType, changeAuthStatus, loadCurrentOffer};
+export {changeCity, loadOffers, changeSortType, changeAuthStatus, loadCurrentOffer, loadComments, loadOffersNearBy};

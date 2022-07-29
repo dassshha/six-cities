@@ -11,7 +11,9 @@ const initialState: StateType = {
   sortType: SORT_TYPE.DEFAULT,
   isDataLoaded: false,
   authorizationStatus: AuthStatus.Unknown,
-  currentOffer: <OfferType>{}
+  currentOffer: <OfferType>{},
+  offersNearBy: [],
+  comments: []
 };
 
 function reducer(state: StateType = initialState, action: ActionsType): StateType {
@@ -26,6 +28,10 @@ function reducer(state: StateType = initialState, action: ActionsType): StateTyp
       return {...state, authorizationStatus: action.payload, isDataLoaded: true};
     case ActionType.LoadCurrentOffer:
       return {...state, currentOffer: action.payload};
+    case ActionType.LoadComments:
+      return {...state, comments: action.payload};
+    case ActionType.LoadOffersNearBy:
+      return {...state, offersNearBy: action.payload};
   }
   return state;
 }

@@ -1,11 +1,12 @@
 import {ThunkActionResult} from '../types/action-type';
 import {OffersListType} from '../types/offers-list-type';
 import {APIRoute, AuthStatus} from '../const';
-import {changeAuthStatus, loadCurrentOffer, loadOffers} from './action';
+import {changeAuthStatus, loadComments, loadCurrentOffer, loadOffers, loadOffersNearBy} from './action';
 import {AxiosError} from 'axios';
 import {AuthType} from '../types/auth-type';
 import {dropToken, saveToken, Token} from '../services/token';
 import {OfferType} from '../types/offer-type';
+import {ReviewsListType} from '../types/reviews-list-type';
 const enum HttpCode {
   Unauthorized= 401
 }
@@ -52,5 +53,19 @@ export function fetchCurrentOffer(id: number): ThunkActionResult {
   return async function (dispatch, _getState, api) {
     const {data} = await api.get<OfferType>(`${APIRoute.Hotels}/${id}`);
     dispatch(loadCurrentOffer(data));
+  };
+}
+
+export function fetchOffersListNearBy(id: number): ThunkActionResult {
+  return async function (dispatch, _getState, api) {
+    const {data} = await api.get<OffersListType>(`${APIRoute.Hotels}/${id}/nearby`);
+    dispatch(loadOffersNearBy(data));
+  };
+}
+
+export function fetchCommentsList(id: number): ThunkActionResult {
+  return async function (dispatch, _getState, api) {
+    const {data} = await api.get<ReviewsListType>(`${APIRoute.Comments}/${id}`);
+    dispatch(loadComments(data));
   };
 }

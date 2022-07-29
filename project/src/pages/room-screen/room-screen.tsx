@@ -18,40 +18,47 @@ import {StateType} from '../../types/state-type';
 import {connect, ConnectedProps} from 'react-redux';
 import {bindActionCreators, Dispatch} from 'redux';
 import {ActionsType} from '../../types/action-type';
-import {fetchCurrentOffer} from '../../store/api-actions';
+import {fetchCommentsList, fetchCurrentOffer, fetchOffersListNearBy} from '../../store/api-actions';
 import {LoadingScreen} from '../loading-screen/loading-screen';
 
-type RoomScreenProps = {
-  offers: OffersListType,
-  reviews: ReviewsListType,
-  offersNear: OffersListType,
-};
+// type RoomScreenProps = {
+//   offers: OffersListType,
+//   reviews: ReviewsListType,
+//   offersNear: OffersListType,
+// };
 
-function mapStateToProps({city, currentOffer}: StateType) {
-  return {city, offer: currentOffer};
+function mapStateToProps({city, currentOffer, offersNearBy, comments}: StateType) {
+  return {city, offer: currentOffer, offersNear: offersNearBy, reviews: comments};
 }
 
 function mapDispatchToProps(dispatch: Dispatch<ActionsType>) {
   return bindActionCreators({
-    loadCurrentOffer: fetchCurrentOffer
+    loadCurrentOffer: fetchCurrentOffer,
+    loadOffersNearBy: fetchOffersListNearBy,
+    loadComments: fetchCommentsList
   }, dispatch);
 }
 
 const connector = connect(mapStateToProps, mapDispatchToProps);
 
 type PropsFromRedux = ConnectedProps<typeof connector>;
-type ConnectedComponentProps = RoomScreenProps & PropsFromRedux;
+type ConnectedComponentProps = PropsFromRedux;
 
-function RoomScreen({reviews, offersNear, city, offers, loadCurrentOffer, offer}: ConnectedComponentProps): JSX.Element {
+function RoomScreen({reviews, offersNear, city, loadComments, loadOffersNearBy, loadCurrentOffer, offer}: ConnectedComponentProps): JSX.Element {
   const {id} = useParams();
 
   useEffect(() => {
     loadCurrentOffer(Number(id));
+    loadOffersNearBy(Number(id));
+    loadComments(Number(id));
   }, [id]);
 
-  if (!Object.entries(offer).length) {
+  if (!Object.entries(offer).length || !offersNear.length) {
     return <LoadingScreen/>
   }
+
+  const offersNearWithCurrentOffer = offersNear.slice()
+    offersNearWithCurrentOffer.push(offer);
 
   return (
     <div className="page">
@@ -110,7 +117,7 @@ function RoomScreen({reviews, offersNear, city, offers, loadCurrentOffer, offer}
             </div>
           </div>
           <section className="property__map map">
-            <Map city={city} points={offersNear} selectedPoint={offer.id}/>
+            <Map city={city} points={offersNearWithCurrentOffer} selectedPoint={offer.id}/>
           </section>
         </section>
         <div className="container">

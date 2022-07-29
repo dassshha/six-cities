@@ -17,7 +17,7 @@ function getElementByType(type: string, offer: OfferType, onOfferHover?: (offerI
     case LIST_TYPE.MAIN:
       return onOfferHover && <CardMain {...offer} key={offer.id} onOfferHover={onOfferHover}/>;
     case LIST_TYPE.NEAR:
-      return <CardNear key={offer.id}/>;
+      return <CardNear key={offer.id} {...offer}/>;
   }
   return offer.isFavorite && <CardFavorites {...offer} key={offer.id}/>;
 }
