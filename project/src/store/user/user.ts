@@ -1,17 +1,17 @@
-import {ActionsType, ActionType} from '../../types/action-type';
 import {AuthStatus} from '../../const';
 import {UserStateType} from '../../types/state-type';
+import {createReducer} from '@reduxjs/toolkit';
+import {changeAuthStatus} from '../action';
 
 const initialState: UserStateType = {
   authorizationStatus: AuthStatus.Unknown,
 };
 
-function userReducer(state = initialState, action: ActionsType): UserStateType {
-  switch (action.type) {
-    case ActionType.ChangeAuthStatus:
-      return {...state, authorizationStatus: action.payload};
-  }
-  return state;
-}
+const userReducer = createReducer(initialState, (builder) => {
+  builder
+    .addCase(changeAuthStatus, (state, action) => {
+      state.authorizationStatus = action.payload
+    });
+});
 
 export {userReducer};

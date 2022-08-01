@@ -1,6 +1,7 @@
-import {ActionsType, ActionType} from '../../types/action-type';
 import {OfferType} from '../../types/offer-type';
 import {DataStateType} from '../../types/state-type';
+import {createReducer} from '@reduxjs/toolkit';
+import {loadComments, loadCurrentOffer, loadOffers, loadOffersNearBy} from '../action';
 
 const initialState: DataStateType = {
   offers: [],
@@ -10,18 +11,21 @@ const initialState: DataStateType = {
   comments: []
 };
 
-function dataReducer(state = initialState, action: ActionsType): DataStateType {
-  switch (action.type) {
-    case ActionType.LoadOffers:
-      return {...state, offers: action.payload, isDataLoaded: true};
-    case ActionType.LoadCurrentOffer:
-      return {...state, currentOffer: action.payload};
-    case ActionType.LoadComments:
-      return {...state, comments: action.payload};
-    case ActionType.LoadOffersNearBy:
-      return {...state, offersNearBy: action.payload};
-  }
-  return state;
-}
+const dataReducer = createReducer(initialState, (builder) => {
+  builder
+    .addCase(loadOffers, (state, action) => {
+      state.offers = action.payload
+      state.isDataLoaded = true;
+    })
+    .addCase(loadCurrentOffer, (state, action) => {
+      state.currentOffer = action.payload
+    })
+    .addCase(loadComments, (state, action) => {
+      state.comments = action.payload
+    })
+    .addCase(loadOffersNearBy, (state, action) => {
+      state.offersNearBy = action.payload
+    });
+});
 
 export {dataReducer};

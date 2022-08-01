@@ -19,6 +19,7 @@ import {ThunkAppDispatch} from './types/action-type';
 import {Navigate} from 'react-router-dom';
 import {PageNotFoundScreen} from './pages/page-not-found-screen/page-not-found-screen';
 import {SignInScreen} from './pages/sign-in-screen/sign-in-screen';
+import {configureStore} from '@reduxjs/toolkit';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement,
@@ -26,7 +27,15 @@ const root = ReactDOM.createRoot(
 
 const api = createApi(() => store.dispatch(changeAuthStatus(AuthStatus.NoAuth)));
 
-const store = createStore(reducer, composeWithDevTools(applyMiddleware(thunk.withExtraArgument(api))));
+const store = configureStore({
+  reducer: reducer,
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      thunk: {
+        extraArgument: api
+      }
+    })
+});
 
 (store.dispatch as ThunkAppDispatch)(checkAuth());
 (store.dispatch as ThunkAppDispatch)(fetchOffersList());

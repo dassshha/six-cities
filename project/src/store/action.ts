@@ -1,61 +1,21 @@
-import {
-  ActionType, ChangeAuthStatusActionType,
-  ChangeCityActionType,
-  ChangeSortActionType, LoadCommentsActionType, LoadCurrentOfferActionType,
-  LoadOffersActionType, LoadOffersNearByActionType
-} from '../types/action-type';
+import {ActionType} from '../types/action-type';
 import {CityType} from '../types/city-type';
 import {OffersListType} from '../types/offers-list-type';
 import {OfferType} from '../types/offer-type';
 import {ReviewsListType} from '../types/reviews-list-type';
+import {createAction} from '@reduxjs/toolkit';
 
-function changeCity(city: CityType): ChangeCityActionType {
-  return {
-    type: ActionType.ChangeCity,
-    payload: city
-  };
-}
+export const changeCity = createAction<CityType>(ActionType.ChangeCity);
 
-function changeSortType(sortType: string): ChangeSortActionType {
-  return {
-    type: ActionType.ChangeSort,
-    payload: sortType
-  };
-}
+export const changeSortType = createAction<string>(ActionType.ChangeSort);
 
-function loadOffers(offers: OffersListType): LoadOffersActionType {
-  return {
-    type: ActionType.LoadOffers,
-    payload: offers
-  };
-}
+export const loadOffers = createAction<OffersListType>(ActionType.LoadOffers);
 
-function loadCurrentOffer(offer: OfferType): LoadCurrentOfferActionType {
-  return {
-    type: ActionType.LoadCurrentOffer,
-    payload: offer
-  };
-}
+export const loadCurrentOffer = createAction<OfferType>(ActionType.LoadCurrentOffer);
 
-function loadOffersNearBy(offers: OffersListType): LoadOffersNearByActionType {
-  return {
-    type: ActionType.LoadOffersNearBy,
-    payload: offers
-  };
-}
+export const loadOffersNearBy = createAction<OffersListType>(ActionType.LoadOffersNearBy);
 
-function loadComments(comments: ReviewsListType): LoadCommentsActionType {
-  return {
-    type: ActionType.LoadComments,
-    payload: comments
-  };
-}
+export const loadComments = createAction<ReviewsListType>(ActionType.LoadComments);
 
-function changeAuthStatus(status: string): ChangeAuthStatusActionType {
-  return {
-    type: ActionType.ChangeAuthStatus,
-    payload: status
-  };
-}
+export const changeAuthStatus = createAction<string>(ActionType.ChangeAuthStatus);
 
-export {changeCity, loadOffers, changeSortType, changeAuthStatus, loadCurrentOffer, loadComments, loadOffersNearBy};
