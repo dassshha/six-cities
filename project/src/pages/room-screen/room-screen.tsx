@@ -21,7 +21,7 @@ import {ActionsType} from '../../types/action-type';
 import {fetchCommentsList, fetchCurrentOffer, fetchOffersListNearBy} from '../../store/api-actions';
 import {LoadingScreen} from '../loading-screen/loading-screen';
 // import {offers} from '../../mocks/offers';
-import {AppRoute} from '../../const';
+import {AppRoute, AuthStatus} from '../../const';
 import {PageNotFoundScreen} from '../page-not-found-screen/page-not-found-screen';
 import ReviewFormConnected from '../../components/review-form/review-form';
 
@@ -31,8 +31,8 @@ import ReviewFormConnected from '../../components/review-form/review-form';
 //   offersNear: OffersListType,
 // };
 
-function mapStateToProps({city, currentOffer, offersNearBy, comments, offers}: StateType) {
-  return {city, offer: currentOffer, offersNear: offersNearBy, reviews: comments, offers};
+function mapStateToProps({city, currentOffer, offersNearBy, comments, offers, authorizationStatus}: StateType) {
+  return {city, offer: currentOffer, offersNear: offersNearBy, reviews: comments, offers, authorizationStatus};
 }
 
 function mapDispatchToProps(dispatch: Dispatch<ActionsType>) {
@@ -48,7 +48,7 @@ const connector = connect(mapStateToProps, mapDispatchToProps);
 type PropsFromRedux = ConnectedProps<typeof connector>;
 type ConnectedComponentProps = PropsFromRedux;
 
-function RoomScreen({reviews, offersNear, city, loadComments, loadOffersNearBy, loadCurrentOffer, offer, offers}: ConnectedComponentProps): JSX.Element {
+function RoomScreen({reviews, offersNear, city, loadComments, loadOffersNearBy, loadCurrentOffer, offer, offers, authorizationStatus}: ConnectedComponentProps): JSX.Element {
   const {id} = useParams();
   const navigate = useNavigate();
 
@@ -123,7 +123,7 @@ function RoomScreen({reviews, offersNear, city, loadComments, loadOffersNearBy, 
                   <span className="reviews__amount">{reviews.length}</span>
                 </h2>
                 <ReviewsList reviews={reviews}/>
-                <ReviewFormConnected/>
+                {authorizationStatus === AuthStatus.Auth && <ReviewFormConnected/>}
               </section>
             </div>
           </div>

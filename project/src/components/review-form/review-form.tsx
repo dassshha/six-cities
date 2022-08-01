@@ -7,8 +7,8 @@ import {ActionsType} from '../../types/action-type';
 import {fetchCommentsList, fetchCurrentOffer, fetchOffersListNearBy, postComment} from '../../store/api-actions';
 import {connect, ConnectedProps} from 'react-redux';
 
-function mapStateToProps({currentOffer}: StateType) {
-  return {offer: currentOffer};
+function mapStateToProps({currentOffer, authorizationStatus}: StateType) {
+  return {offer: currentOffer, authorizationStatus};
 }
 
 function mapDispatchToProps(dispatch: Dispatch<ActionsType>) {
