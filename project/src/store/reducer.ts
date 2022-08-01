@@ -3,7 +3,7 @@ import {dataReducer} from './data/data';
 import {appReducer} from './app/app';
 import {userReducer} from './user/user';
 
-enum Namespace {
+export enum Namespace {
   dataSpace ='DATA',
   appSpace = 'APP',
   userSpace = 'USER',
