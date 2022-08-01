@@ -1,11 +1,15 @@
 import axios, {AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse} from 'axios';
 import {getToken} from './token';
+import {useNavigate} from 'react-router-dom';
+import {AppRoute} from '../const';
 
 const BACKEND_URL = ' https://9.react.pages.academy/six-cities';
 const TIMEOUT = 5000;
 
 enum HttpCode {
   Unauthorized= 401,
+  BadRequest = 400,
+  PageNotFound= 404
 }
 
 export function createApi(onUnauthorized: () => void): AxiosInstance {
@@ -19,8 +23,13 @@ export function createApi(onUnauthorized: () => void): AxiosInstance {
     (error: AxiosError) => {
       const {response} = error;
       if (response?.status === HttpCode.Unauthorized) {
-        onUnauthorized();
+        return onUnauthorized();
       }
+
+      // if (response?.status === HttpCode.BadRequest || response?.status === HttpCode.PageNotFound) {
+      //   return onBadRequest();
+      // }
+
       return Promise.reject(error);
     },
   );

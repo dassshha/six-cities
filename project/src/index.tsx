@@ -14,8 +14,11 @@ import {createApi} from './services/api';
 // import {ThunkAppDispatch} from './types/action-type';
 import {checkAuth, fetchOffersList} from './store/api-actions';
 import {changeAuthStatus} from './store/action';
-import {AuthStatus} from './const';
+import {AppRoute, AuthStatus} from './const';
 import {ThunkAppDispatch} from './types/action-type';
+import {Navigate} from 'react-router-dom';
+import {PageNotFoundScreen} from './pages/page-not-found-screen/page-not-found-screen';
+import {SignInScreen} from './pages/sign-in-screen/sign-in-screen';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement,

@@ -11,7 +11,7 @@ import {OffersListNear} from '../../components/offers-list-near/offers-list-near
 import {OffersListType} from '../../types/offers-list-type';
 import {CityType} from '../../types/city-type';
 import {Header} from '../../components/header/header';
-import {useParams} from 'react-router-dom';
+import {useNavigate, useParams} from 'react-router-dom';
 import {Map} from '../../components/map/map';
 import {useEffect} from 'react';
 import {StateType} from '../../types/state-type';
@@ -20,6 +20,9 @@ import {bindActionCreators, Dispatch} from 'redux';
 import {ActionsType} from '../../types/action-type';
 import {fetchCommentsList, fetchCurrentOffer, fetchOffersListNearBy} from '../../store/api-actions';
 import {LoadingScreen} from '../loading-screen/loading-screen';
+// import {offers} from '../../mocks/offers';
+import {AppRoute} from '../../const';
+import {PageNotFoundScreen} from '../page-not-found-screen/page-not-found-screen';
 
 // type RoomScreenProps = {
 //   offers: OffersListType,
@@ -27,8 +30,8 @@ import {LoadingScreen} from '../loading-screen/loading-screen';
 //   offersNear: OffersListType,
 // };
 
-function mapStateToProps({city, currentOffer, offersNearBy, comments}: StateType) {
-  return {city, offer: currentOffer, offersNear: offersNearBy, reviews: comments};
+function mapStateToProps({city, currentOffer, offersNearBy, comments, offers}: StateType) {
+  return {city, offer: currentOffer, offersNear: offersNearBy, reviews: comments, offers};
 }
 
 function mapDispatchToProps(dispatch: Dispatch<ActionsType>) {
@@ -44,14 +47,21 @@ const connector = connect(mapStateToProps, mapDispatchToProps);
 type PropsFromRedux = ConnectedProps<typeof connector>;
 type ConnectedComponentProps = PropsFromRedux;
 
-function RoomScreen({reviews, offersNear, city, loadComments, loadOffersNearBy, loadCurrentOffer, offer}: ConnectedComponentProps): JSX.Element {
+function RoomScreen({reviews, offersNear, city, loadComments, loadOffersNearBy, loadCurrentOffer, offer, offers}: ConnectedComponentProps): JSX.Element {
   const {id} = useParams();
+  const navigate = useNavigate();
 
   useEffect(() => {
     loadCurrentOffer(Number(id));
     loadOffersNearBy(Number(id));
     loadComments(Number(id));
   }, [id]);
+
+  const isExistOffer = offers.filter((off) => off.id === Number(id));
+
+  if (!isExistOffer.length) {
+    return <PageNotFoundScreen/>
+  }
 
   if (!Object.entries(offer).length || !offersNear.length) {
     return <LoadingScreen/>
