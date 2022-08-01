@@ -28,8 +28,8 @@ type AppProps = {
   cities: CitiesListType
 };
 
-function mapStateToProps({isDataLoaded}: StateType) {
-  return {isDataLoaded};
+function mapStateToProps({DATA}: StateType) {
+  return {isDataLoaded: DATA.isDataLoaded};
 }
 
 // function mapDispatchToProps(dispatch: Dispatch<ActionsType>) {

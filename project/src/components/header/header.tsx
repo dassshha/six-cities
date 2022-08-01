@@ -8,8 +8,8 @@ import {ActionsType} from '../../types/action-type';
 import {fetchCommentsList, fetchCurrentOffer, fetchOffersListNearBy, logout} from '../../store/api-actions';
 import AuthUserConnected from '../../components/auth-user/auth-user'
 
-function mapStateToProps({authorizationStatus}: StateType) {
-  return {authorizationStatus};
+function mapStateToProps({USER}: StateType) {
+  return {authorizationStatus: USER.authorizationStatus};
 }
 
 function mapDispatchToProps(dispatch: Dispatch<ActionsType>) {

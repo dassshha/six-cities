@@ -7,8 +7,8 @@ type PrivateRouteProps = RouteProps & {
   children: JSX.Element
 }
 
-function mapStateToProps({authorizationStatus}: StateType) {
-  return {authorizationStatus};
+function mapStateToProps({USER}: StateType) {
+  return {authorizationStatus: USER.authorizationStatus};
 }
 
 const connector = connect(mapStateToProps);

@@ -2,14 +2,23 @@ import {CityType} from './city-type';
 import {OffersListType} from './offers-list-type';
 import {OfferType} from './offer-type';
 import {ReviewsListType} from './reviews-list-type';
+import {State} from '../store/reducer';
 
-export type StateType = {
+export type StateType = State;
+
+export type AppStateType = {
   city: CityType,
-  offers: OffersListType,
   sortType: string,
+}
+
+export type DataStateType = {
+  offers: OffersListType,
   isDataLoaded: boolean,
-  authorizationStatus: string,
   currentOffer: OfferType,
   offersNearBy: OffersListType,
   comments: ReviewsListType
+}
+
+export type UserStateType = {
+  authorizationStatus: string,
 }

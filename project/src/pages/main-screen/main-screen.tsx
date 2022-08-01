@@ -23,8 +23,8 @@ type MainScreenProps = {
   // city: CityType
 }
 
-function mapStateToProps({city, offers, sortType}: StateType) {
-  return {city, offers, sortType};
+function mapStateToProps({DATA, APP}: StateType) {
+  return {city: APP.city, offers: DATA.offers, sortType: APP.sortType};
 }
 
 // function mapDispatchToProps(dispatch: Dispatch<ActionsType>) {

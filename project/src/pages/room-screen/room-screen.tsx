@@ -31,8 +31,14 @@ import ReviewFormConnected from '../../components/review-form/review-form';
 //   offersNear: OffersListType,
 // };
 
-function mapStateToProps({city, currentOffer, offersNearBy, comments, offers, authorizationStatus}: StateType) {
-  return {city, offer: currentOffer, offersNear: offersNearBy, reviews: comments, offers, authorizationStatus};
+function mapStateToProps({USER, APP, DATA}: StateType) {
+  return {
+    city: APP.city,
+    offer: DATA.currentOffer,
+    offersNear: DATA.offersNearBy,
+    reviews: DATA.comments,
+    offers: DATA.offers,
+    authorizationStatus: USER.authorizationStatus};
 }
 
 function mapDispatchToProps(dispatch: Dispatch<ActionsType>) {

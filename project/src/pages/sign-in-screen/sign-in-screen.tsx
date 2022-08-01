@@ -8,8 +8,8 @@ import {login} from '../../store/api-actions';
 import {AppRoute, AuthStatus} from '../../const';
 import {Navigate, useNavigate} from 'react-router-dom';
 
-function mapStateToProps({authorizationStatus}: StateType) {
-  return {authorizationStatus};
+function mapStateToProps({USER}: StateType) {
+  return {authorizationStatus: USER.authorizationStatus};
 }
 
 function mapDispatchToProps(dispatch: ThunkAppDispatch) {
