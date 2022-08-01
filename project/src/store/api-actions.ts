@@ -7,6 +7,7 @@ import {AuthType} from '../types/auth-type';
 import {dropToken, saveToken, Token} from '../services/token';
 import {OfferType} from '../types/offer-type';
 import {ReviewsListType} from '../types/reviews-list-type';
+import {CommentPostType} from '../types/comment';
 const enum HttpCode {
   Unauthorized= 401
 }
@@ -66,6 +67,13 @@ export function fetchOffersListNearBy(id: number): ThunkActionResult {
 export function fetchCommentsList(id: number): ThunkActionResult {
   return async function (dispatch, _getState, api) {
     const {data} = await api.get<ReviewsListType>(`${APIRoute.Comments}/${id}`);
+    dispatch(loadComments(data));
+  };
+}
+
+export function postComment({comment, rating}: CommentPostType, id: number): ThunkActionResult {
+  return async function(dispatch, _getState, api) {
+    const {data} = await api.post<ReviewsListType>(`${APIRoute.Comments}/${id}`, {comment, rating});
     dispatch(loadComments(data));
   };
 }

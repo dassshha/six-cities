@@ -23,6 +23,7 @@ import {LoadingScreen} from '../loading-screen/loading-screen';
 // import {offers} from '../../mocks/offers';
 import {AppRoute} from '../../const';
 import {PageNotFoundScreen} from '../page-not-found-screen/page-not-found-screen';
+import ReviewFormConnected from '../../components/review-form/review-form';
 
 // type RoomScreenProps = {
 //   offers: OffersListType,
@@ -122,7 +123,7 @@ function RoomScreen({reviews, offersNear, city, loadComments, loadOffersNearBy, 
                   <span className="reviews__amount">{reviews.length}</span>
                 </h2>
                 <ReviewsList reviews={reviews}/>
-                <ReviewForm/>
+                <ReviewFormConnected/>
               </section>
             </div>
           </div>
