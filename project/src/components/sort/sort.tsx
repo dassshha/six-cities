@@ -1,25 +1,18 @@
-import {bindActionCreators, Dispatch} from 'redux';
-import {ActionsType} from '../../types/action-type';
 import {changeSortType} from '../../store/action';
-import {connect, ConnectedProps} from 'react-redux';
+import {useDispatch} from 'react-redux';
 import {SORT_TYPE} from '../../const';
+import {appDispatch} from '../../types/state-type';
 
 type SortProps = {
   activeSortType: string,
   isOpened: boolean
 };
 
-function mapDispatchToProps(dispatch: Dispatch<ActionsType>) {
-  return bindActionCreators({
-    onSortTypeClick: changeSortType
-  }, dispatch);
-}
-
-const connector = connect(null, mapDispatchToProps);
-
-type PropsFromRedux = ConnectedProps<typeof connector>;
-type ConnectedComponentProps = SortProps & PropsFromRedux;
-function Sort({activeSortType, onSortTypeClick, isOpened}: ConnectedComponentProps): JSX.Element {
+function Sort({activeSortType, isOpened}: SortProps): JSX.Element {
+  const dispatch = useDispatch<appDispatch>();
+  function onSortTypeClick(sortType: string) {
+    dispatch(changeSortType(sortType));
+  }
   return (
     <ul className={`places__options places__options--custom places__options--${isOpened ? 'opened' : 'closed'}`}>
       <li className={`places__option ${activeSortType === SORT_TYPE.DEFAULT && 'places__option--active'}`} onClick={() => onSortTypeClick(SORT_TYPE.DEFAULT)} tabIndex={0}>Popular</li>
@@ -31,4 +24,3 @@ function Sort({activeSortType, onSortTypeClick, isOpened}: ConnectedComponentPro
 }
 
 export {Sort};
-export default connector(Sort);

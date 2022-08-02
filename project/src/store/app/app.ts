@@ -12,10 +12,10 @@ const initialState: AppStateType = {
 const appReducer = createReducer(initialState, (builder) => {
   builder
     .addCase(changeCity, (state, action) => {
-      state.city = action.payload
+      state.city = action.payload;
     })
     .addCase(changeSortType, (state, action) => {
-      state.sortType = action.payload
+      state.sortType = action.payload;
     });
 });
 

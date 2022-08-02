@@ -1,33 +1,19 @@
 import {ChangeEvent, FormEvent, useState} from 'react';
-import {StateType} from '../../types/state-type';
-import {connect, ConnectedProps} from 'react-redux';
-import {Dispatch} from 'react';
-import {ActionsType, ThunkAppDispatch} from '../../types/action-type';
-import {bindActionCreators} from 'redux';
+import {appDispatch} from '../../types/state-type';
+import {useDispatch, useSelector} from 'react-redux';
 import {login} from '../../store/api-actions';
 import {AppRoute, AuthStatus} from '../../const';
-import {Navigate, useNavigate} from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
+import {getAuthStatus} from '../../store/user/selectors';
 
-function mapStateToProps({USER}: StateType) {
-  return {authorizationStatus: USER.authorizationStatus};
-}
-
-function mapDispatchToProps(dispatch: ThunkAppDispatch) {
-  return bindActionCreators({
-    onSubmit: login
-  }, dispatch);
-}
-
-const connector = connect(mapStateToProps, mapDispatchToProps);
-
-type PropsFromRedux = ConnectedProps<typeof connector>;
-type ConnectedComponentProps = PropsFromRedux;
-
-function SignInScreen({onSubmit, authorizationStatus}: ConnectedComponentProps): JSX.Element {
+function SignInScreen(): JSX.Element {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const navigate = useNavigate();
 
+  const navigate = useNavigate();
+  const dispatch = useDispatch<appDispatch>();
+
+  const authorizationStatus = useSelector(getAuthStatus);
 
   const changeEmailHandler = (evt: ChangeEvent<HTMLInputElement>) => setEmail(evt.target.value);
 
@@ -35,11 +21,11 @@ function SignInScreen({onSubmit, authorizationStatus}: ConnectedComponentProps):
 
   const submitHandler = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
-    onSubmit({email: email, password: password})
+    dispatch(login({email: email, password: password}));
     if (authorizationStatus === AuthStatus.Auth) {
       return navigate(AppRoute.Main);
     }
-  }
+  };
   return (
     <div className="page page--gray page--login">
       <header className="header">
@@ -84,4 +70,3 @@ function SignInScreen({onSubmit, authorizationStatus}: ConnectedComponentProps):
 }
 
 export {SignInScreen};
-export default connector(SignInScreen);

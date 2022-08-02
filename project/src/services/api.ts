@@ -1,7 +1,5 @@
 import axios, {AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse} from 'axios';
 import {getToken} from './token';
-import {useNavigate} from 'react-router-dom';
-import {AppRoute} from '../const';
 
 const BACKEND_URL = ' https://9.react.pages.academy/six-cities';
 const TIMEOUT = 5000;

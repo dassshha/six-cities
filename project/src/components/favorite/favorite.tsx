@@ -1,4 +1,14 @@
+import {useDispatch, useSelector} from 'react-redux';
+import {appDispatch} from '../../types/state-type';
+import {addOfferToFavorites} from '../../store/api-actions';
+import {getCurrentOffer, getOffers} from '../../store/data/selectors';
+import {getAuthStatus} from '../../store/user/selectors';
+import {AppRoute, AuthStatus} from '../../const';
+import {useNavigate} from 'react-router-dom';
+
 type FavoriteProps = {
+  cardPlace: string
+  offerId: number
   className: string,
   isFavorite: boolean,
   size: {
@@ -7,9 +17,18 @@ type FavoriteProps = {
   }
 }
 
-function Favorite({className, isFavorite, size}: FavoriteProps): JSX.Element {
+function Favorite({className, isFavorite, size, offerId, cardPlace}: FavoriteProps): JSX.Element {
+  const dispatch = useDispatch<appDispatch>();
+  const authStatus = useSelector(getAuthStatus);
+  const navigate = useNavigate();
+  function addToFavorites() {
+    if (authStatus !== AuthStatus.Auth) {
+      navigate(AppRoute.SignIn);
+    }
+    dispatch(addOfferToFavorites(offerId, Number(!isFavorite), cardPlace));
+  }
   return (
-    <button className={`${className}__bookmark-button ${isFavorite && `${className}__bookmark-button--active`} button`} type="button">
+    <button className={`${className}__bookmark-button ${isFavorite && `${className}__bookmark-button--active`} button`} type="button" onClick={addToFavorites}>
       <svg className={`${className}__bookmark-icon`} width={size.width} height={size.height}>
         <use xlinkHref="#icon-bookmark"/>
       </svg>

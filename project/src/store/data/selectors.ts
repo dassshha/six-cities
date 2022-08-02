@@ -1,5 +1,4 @@
 import {StateType} from '../../types/state-type';
-import {CityType} from '../../types/city-type';
 import {Namespace} from '../reducer';
 import {OffersListType} from '../../types/offers-list-type';
 import {OfferType} from '../../types/offer-type';

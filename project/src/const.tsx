@@ -11,11 +11,18 @@ export enum AuthStatus {
   Unknown = 'UNKNOWN'
 }
 
+export enum AddToFavoritesCardPlace {
+  Main= 'MAIN',
+  NearBy = 'NEAR_BY',
+  Room = 'ROOM'
+}
+
 export enum APIRoute {
   Hotels = '/hotels',
   Login = '/login',
   Logout = '/logout',
-  Comments = '/comments'
+  Comments = '/comments',
+  Favorites = '/favorite'
 }
 
 export const RATING = {

@@ -1,85 +1,59 @@
-import {ReviewForm} from '../../components/review-form/review-form';
 import {ReviewsList} from '../../components/reviews-list/reviews-list';
 import {RoomGallery} from '../../components/room-gallery/room-gallery';
-import {ReviewsListType} from '../../types/reviews-list-type';
 import {Goods} from '../../components/goods/goods';
 import {Host} from '../../components/host/host';
 import {Premium} from '../../components/premium/premium';
 import {Favorite} from '../../components/favorite/favorite';
 import {Rating} from '../../components/rating/rating';
 import {OffersListNear} from '../../components/offers-list-near/offers-list-near';
-import {OffersListType} from '../../types/offers-list-type';
-import {CityType} from '../../types/city-type';
 import {Header} from '../../components/header/header';
-import {useNavigate, useParams} from 'react-router-dom';
+import {useParams} from 'react-router-dom';
 import {Map} from '../../components/map/map';
 import {useEffect} from 'react';
-import {StateType} from '../../types/state-type';
-import {connect, ConnectedProps} from 'react-redux';
-import {bindActionCreators, Dispatch} from 'redux';
-import {ActionsType} from '../../types/action-type';
+import {appDispatch} from '../../types/state-type';
+import {useDispatch, useSelector} from 'react-redux';
 import {fetchCommentsList, fetchCurrentOffer, fetchOffersListNearBy} from '../../store/api-actions';
 import {LoadingScreen} from '../loading-screen/loading-screen';
-// import {offers} from '../../mocks/offers';
-import {AppRoute, AuthStatus} from '../../const';
+import {AddToFavoritesCardPlace, AuthStatus} from '../../const';
 import {PageNotFoundScreen} from '../page-not-found-screen/page-not-found-screen';
-import ReviewFormConnected from '../../components/review-form/review-form';
+import {getCity} from '../../store/app/selectors';
+import {getComments, getCurrentOffer, getOffers, getOffersNearBy} from '../../store/data/selectors';
+import {getAuthStatus} from '../../store/user/selectors';
+import {ReviewForm} from '../../components/review-form/review-form';
 
-// type RoomScreenProps = {
-//   offers: OffersListType,
-//   reviews: ReviewsListType,
-//   offersNear: OffersListType,
-// };
-
-function mapStateToProps({USER, APP, DATA}: StateType) {
-  return {
-    city: APP.city,
-    offer: DATA.currentOffer,
-    offersNear: DATA.offersNearBy,
-    reviews: DATA.comments,
-    offers: DATA.offers,
-    authorizationStatus: USER.authorizationStatus};
-}
-
-function mapDispatchToProps(dispatch: Dispatch<ActionsType>) {
-  return bindActionCreators({
-    loadCurrentOffer: fetchCurrentOffer,
-    loadOffersNearBy: fetchOffersListNearBy,
-    loadComments: fetchCommentsList
-  }, dispatch);
-}
-
-const connector = connect(mapStateToProps, mapDispatchToProps);
-
-type PropsFromRedux = ConnectedProps<typeof connector>;
-type ConnectedComponentProps = PropsFromRedux;
-
-function RoomScreen({reviews, offersNear, city, loadComments, loadOffersNearBy, loadCurrentOffer, offer, offers, authorizationStatus}: ConnectedComponentProps): JSX.Element {
+function RoomScreen(): JSX.Element {
   const {id} = useParams();
-  const navigate = useNavigate();
+  const dispatch = useDispatch<appDispatch>();
+
+  const city = useSelector(getCity);
+  const offer = useSelector(getCurrentOffer);
+  const offersNear = useSelector(getOffersNearBy);
+  const reviews = useSelector(getComments);
+  const offers = useSelector(getOffers);
+  const authorizationStatus = useSelector(getAuthStatus);
 
   useEffect(() => {
-    loadCurrentOffer(Number(id));
-    loadOffersNearBy(Number(id));
-    loadComments(Number(id));
+    dispatch(fetchCurrentOffer(Number(id)));
+    dispatch(fetchOffersListNearBy(Number(id)));
+    dispatch(fetchCommentsList(Number(id)));
   }, [id]);
 
   const isExistOffer = offers.filter((off) => off.id === Number(id));
 
   if (!isExistOffer.length) {
-    return <PageNotFoundScreen/>
+    return <PageNotFoundScreen/>;
   }
 
   if (!Object.entries(offer).length || !offersNear.length) {
-    return <LoadingScreen/>
+    return <LoadingScreen/>;
   }
 
-  const offersNearWithCurrentOffer = offersNear.slice()
-    offersNearWithCurrentOffer.push(offer);
+  const offersNearWithCurrentOffer = offersNear.slice();
+  offersNearWithCurrentOffer.push(offer);
 
   return (
     <div className="page">
-      {/*<Header/>*/}
+      <Header/>
       <main className="page__main page__main--property">
         <section className="property">
           <RoomGallery images={offer.images}/>
@@ -90,7 +64,7 @@ function RoomScreen({reviews, offersNear, city, loadComments, loadOffersNearBy, 
                 <h1 className="property__name">
                   {offer.title}
                 </h1>
-                <Favorite className='property' isFavorite={offer.isFavorite} size={{width: 31, height: 33}}/>
+                <Favorite className='property' isFavorite={offer.isFavorite} size={{width: 31, height: 33}} offerId={offer.id} cardPlace={AddToFavoritesCardPlace.Room}/>
               </div>
               <div className="property__rating rating">
                 <Rating className='property' value={offer.rating}/>
@@ -129,7 +103,7 @@ function RoomScreen({reviews, offersNear, city, loadComments, loadOffersNearBy, 
                   <span className="reviews__amount">{reviews.length}</span>
                 </h2>
                 <ReviewsList reviews={reviews}/>
-                {authorizationStatus === AuthStatus.Auth && <ReviewFormConnected/>}
+                {authorizationStatus === AuthStatus.Auth && <ReviewForm/>}
               </section>
             </div>
           </div>
@@ -149,4 +123,3 @@ function RoomScreen({reviews, offersNear, city, loadComments, loadOffersNearBy, 
 }
 
 export {RoomScreen};
-export default connector(RoomScreen);

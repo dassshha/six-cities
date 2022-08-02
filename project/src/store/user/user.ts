@@ -10,7 +10,7 @@ const initialState: UserStateType = {
 const userReducer = createReducer(initialState, (builder) => {
   builder
     .addCase(changeAuthStatus, (state, action) => {
-      state.authorizationStatus = action.payload
+      state.authorizationStatus = action.payload;
     });
 });
 

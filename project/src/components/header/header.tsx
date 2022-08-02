@@ -1,28 +1,11 @@
-import {StateType} from '../../types/state-type';
-import {connect, ConnectedProps} from 'react-redux';
+import {useSelector} from 'react-redux';
 import {AuthUser} from '../auth-user/auth-user';
 import {NotAuthUser} from '../not-auth-user/not-auth-user';
 import {AuthStatus} from '../../const';
-import {bindActionCreators, Dispatch} from 'redux';
-import {ActionsType} from '../../types/action-type';
-import {fetchCommentsList, fetchCurrentOffer, fetchOffersListNearBy, logout} from '../../store/api-actions';
-import AuthUserConnected from '../../components/auth-user/auth-user'
+import {getAuthStatus} from '../../store/user/selectors';
 
-function mapStateToProps({USER}: StateType) {
-  return {authorizationStatus: USER.authorizationStatus};
-}
-
-function mapDispatchToProps(dispatch: Dispatch<ActionsType>) {
-  return bindActionCreators({
-    logout: logout
-  }, dispatch);
-}
-
-const connector = connect(mapStateToProps,mapDispatchToProps);
-
-type PropsFromRedux = ConnectedProps<typeof connector>;
-type ConnectedComponentProps = PropsFromRedux;
-function Header({authorizationStatus}: ConnectedComponentProps): JSX.Element {
+function Header(): JSX.Element {
+  const authorizationStatus = useSelector(getAuthStatus);
   return (
     <header className="header">
       <div className="container">
@@ -34,7 +17,7 @@ function Header({authorizationStatus}: ConnectedComponentProps): JSX.Element {
           </div>
           <nav className="header__nav">
             <ul className="header__nav-list">
-              {authorizationStatus === AuthStatus.Auth ? <AuthUserConnected/> : <NotAuthUser/>}
+              {authorizationStatus === AuthStatus.Auth ? <AuthUser/> : <NotAuthUser/>}
             </ul>
           </nav>
         </div>
@@ -44,4 +27,3 @@ function Header({authorizationStatus}: ConnectedComponentProps): JSX.Element {
 }
 
 export {Header};
-export default connector(Header);

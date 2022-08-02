@@ -1,34 +1,22 @@
 import {RatingStar} from '../rating-star/rating-star';
 import {RATING} from '../../const';
 import {ChangeEvent, FormEvent, useState} from 'react';
-import {StateType} from '../../types/state-type';
-import {bindActionCreators, Dispatch} from 'redux';
-import {ActionsType} from '../../types/action-type';
-import {fetchCommentsList, fetchCurrentOffer, fetchOffersListNearBy, postComment} from '../../store/api-actions';
-import {connect, ConnectedProps} from 'react-redux';
+import {appDispatch} from '../../types/state-type';
+import {postComment} from '../../store/api-actions';
+import {useDispatch, useSelector} from 'react-redux';
+import {getCurrentOffer} from '../../store/data/selectors';
 
-function mapStateToProps({USER, DATA}: StateType) {
-  return {offer: DATA.currentOffer, authorizationStatus: USER.authorizationStatus};
-}
-
-function mapDispatchToProps(dispatch: Dispatch<ActionsType>) {
-  return bindActionCreators({
-    postComment: postComment
-  }, dispatch);
-}
-
-const connector = connect(mapStateToProps, mapDispatchToProps);
-
-type PropsFromRedux = ConnectedProps<typeof connector>;
-type ConnectedComponentProps = PropsFromRedux;
-
-function ReviewForm({postComment, offer}: ConnectedComponentProps): JSX.Element {
+function ReviewForm(): JSX.Element {
   const [rating, setRating] = useState(0);
   const [comment, setComment] = useState('');
 
+  const offer = useSelector(getCurrentOffer);
+  const dispatch = useDispatch<appDispatch>();
+
+
   function handleSubmit(evt: FormEvent<HTMLFormElement>) {
     evt.preventDefault();
-    postComment({comment, rating}, offer.id);
+    dispatch(postComment({comment, rating}, offer.id));
     setRating(0);
     setComment('');
   }
@@ -55,4 +43,3 @@ function ReviewForm({postComment, offer}: ConnectedComponentProps): JSX.Element 
 }
 
 export {ReviewForm};
-export default connector(ReviewForm);

@@ -1,16 +1,13 @@
 import {ThunkActionResult} from '../types/action-type';
 import {OffersListType} from '../types/offers-list-type';
-import {APIRoute, AuthStatus} from '../const';
+import {AddToFavoritesCardPlace, APIRoute, AuthStatus} from '../const';
 import {changeAuthStatus, loadComments, loadCurrentOffer, loadOffers, loadOffersNearBy} from './action';
-import {AxiosError} from 'axios';
 import {AuthType} from '../types/auth-type';
 import {dropToken, saveToken, Token} from '../services/token';
 import {OfferType} from '../types/offer-type';
 import {ReviewsListType} from '../types/reviews-list-type';
 import {CommentPostType} from '../types/comment';
-const enum HttpCode {
-  Unauthorized= 401
-}
+
 
 export function fetchOffersList(): ThunkActionResult {
   return async function (dispatch, _getState, api): Promise<void> {
@@ -23,14 +20,8 @@ export function checkAuth(): ThunkActionResult {
   return async function (dispatch, _getState, api) {
     await api.get(APIRoute.Login)
       .then(() => {
-      dispatch(changeAuthStatus(AuthStatus.Auth));
-    })
-      // .catch((error: AxiosError) => {
-      //   const {response} = error;
-      //   if (response?.status === HttpCode.Unauthorized) {
-      //     dispatch(changeAuthStatus(AuthStatus.NoAuth));
-      //   }
-      // });
+        dispatch(changeAuthStatus(AuthStatus.Auth));
+      });
   };
 }
 
@@ -75,5 +66,25 @@ export function postComment({comment, rating}: CommentPostType, id: number): Thu
   return async function(dispatch, _getState, api) {
     const {data} = await api.post<ReviewsListType>(`${APIRoute.Comments}/${id}`, {comment, rating});
     dispatch(loadComments(data));
+  };
+}
+
+export function addOfferToFavorites(id: number, status: number, place: string): ThunkActionResult {
+  return async function(dispatch, _getState, api) {
+    await api.post<OfferType>(`${APIRoute.Favorites}/${id}/${status}`);
+    switch (place) {
+      case AddToFavoritesCardPlace.Main:
+        await dispatch(fetchOffersList());
+        return;
+      case AddToFavoritesCardPlace.NearBy:
+        await dispatch(fetchOffersListNearBy(id));
+        return;
+      case AddToFavoritesCardPlace.Room:
+        await dispatch(fetchCurrentOffer(id));
+        return
+      default:
+        return;
+    }
+
   };
 }

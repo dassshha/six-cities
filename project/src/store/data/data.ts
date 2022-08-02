@@ -14,18 +14,18 @@ const initialState: DataStateType = {
 const dataReducer = createReducer(initialState, (builder) => {
   builder
     .addCase(loadOffers, (state, action) => {
-      state.offers = action.payload
+      state.offers = action.payload;
       state.isDataLoaded = true;
     })
     .addCase(loadCurrentOffer, (state, action) => {
-      state.currentOffer = action.payload
+      state.currentOffer = action.payload;
     })
     .addCase(loadComments, (state, action) => {
-      state.comments = action.payload
+      state.comments = action.payload;
     })
     .addCase(loadOffersNearBy, (state, action) => {
-      state.offersNearBy = action.payload
-    });
+      state.offersNearBy = action.payload;
+    })
 });
 
 export {dataReducer};

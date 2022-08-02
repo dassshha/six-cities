@@ -1,28 +1,15 @@
-import {FormEvent, Fragment} from 'react';
-import {AppRoute, AuthStatus} from '../../const';
-import {Link, useNavigate} from 'react-router-dom';
-import {ActionsType, ThunkActionResult} from '../../types/action-type';
-import {StateType} from '../../types/state-type';
-import {bindActionCreators, Dispatch} from 'redux';
+import {Fragment} from 'react';
+import {Link} from 'react-router-dom';
 import {logout} from '../../store/api-actions';
-import {connect, ConnectedProps} from 'react-redux';
+import {useDispatch} from 'react-redux';
+import {appDispatch} from '../../types/state-type';
 
-// function mapStateToProps({authorizationStatus}: StateType) {
-//   return {authorizationStatus};
-// }
 
-function mapDispatchToProps(dispatch: Dispatch<ActionsType>) {
-  return bindActionCreators({
-    handleLogout: logout
-  }, dispatch);
-}
-
-const connector = connect(null,mapDispatchToProps);
-
-type PropsFromRedux = ConnectedProps<typeof connector>;
-type ConnectedComponentProps = PropsFromRedux;
-
-function AuthUser({handleLogout}: ConnectedComponentProps): JSX.Element {
+function AuthUser(): JSX.Element {
+  const dispatch = useDispatch<appDispatch>();
+  function handleLogout() {
+    dispatch(logout());
+  }
   return (
     <Fragment>
       <li className="header__nav-item user">
@@ -42,4 +29,3 @@ function AuthUser({handleLogout}: ConnectedComponentProps): JSX.Element {
 }
 
 export {AuthUser};
-export default connector(AuthUser);
