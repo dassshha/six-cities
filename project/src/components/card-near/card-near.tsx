@@ -3,8 +3,10 @@ import {Rating} from '../rating/rating';
 import {Favorite} from '../favorite/favorite';
 import {Premium} from '../premium/premium';
 import {AddToFavoritesCardPlace} from '../../const';
+import {useSelector} from 'react-redux';
+import {getCurrentOffer} from '../../store/data/selectors';
 
-type CardNearProps = OfferType;
+type CardNearProps = OfferType
 function CardNear({previewImage, isPremium, price, title, type, isFavorite, rating, id}: CardNearProps): JSX.Element {
   return (
     <article className="near-places__card place-card">

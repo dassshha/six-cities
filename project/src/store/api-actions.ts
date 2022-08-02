@@ -69,7 +69,7 @@ export function postComment({comment, rating}: CommentPostType, id: number): Thu
   };
 }
 
-export function addOfferToFavorites(id: number, status: number, place: string): ThunkActionResult {
+export function addOfferToFavorites(id: number, status: number, place: string, mainOfferId?: number): ThunkActionResult {
   return async function(dispatch, _getState, api) {
     await api.post<OfferType>(`${APIRoute.Favorites}/${id}/${status}`);
     switch (place) {
@@ -77,7 +77,9 @@ export function addOfferToFavorites(id: number, status: number, place: string): 
         await dispatch(fetchOffersList());
         return;
       case AddToFavoritesCardPlace.NearBy:
-        await dispatch(fetchOffersListNearBy(id));
+        if (mainOfferId) {
+          await dispatch(fetchOffersListNearBy(mainOfferId));
+        }
         return;
       case AddToFavoritesCardPlace.Room:
         await dispatch(fetchCurrentOffer(id));

@@ -3,7 +3,7 @@ import {appDispatch} from '../../types/state-type';
 import {addOfferToFavorites} from '../../store/api-actions';
 import {getCurrentOffer, getOffers} from '../../store/data/selectors';
 import {getAuthStatus} from '../../store/user/selectors';
-import {AppRoute, AuthStatus} from '../../const';
+import {AddToFavoritesCardPlace, AppRoute, AuthStatus} from '../../const';
 import {useNavigate} from 'react-router-dom';
 
 type FavoriteProps = {
@@ -21,11 +21,12 @@ function Favorite({className, isFavorite, size, offerId, cardPlace}: FavoritePro
   const dispatch = useDispatch<appDispatch>();
   const authStatus = useSelector(getAuthStatus);
   const navigate = useNavigate();
+  const mainOfferId = useSelector(getCurrentOffer).id;
   function addToFavorites() {
     if (authStatus !== AuthStatus.Auth) {
       navigate(AppRoute.SignIn);
     }
-    dispatch(addOfferToFavorites(offerId, Number(!isFavorite), cardPlace));
+    dispatch(addOfferToFavorites(offerId, Number(!isFavorite), cardPlace, cardPlace === AddToFavoritesCardPlace.NearBy ? mainOfferId : undefined));
   }
   return (
     <button className={`${className}__bookmark-button ${isFavorite && `${className}__bookmark-button--active`} button`} type="button" onClick={addToFavorites}>
