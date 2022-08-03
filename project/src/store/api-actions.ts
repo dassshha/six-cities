@@ -1,7 +1,14 @@
 import {ThunkActionResult} from '../types/action-type';
 import {OffersListType} from '../types/offers-list-type';
 import {AddToFavoritesCardPlace, APIRoute, AuthStatus} from '../const';
-import {changeAuthStatus, loadComments, loadCurrentOffer, loadOffers, loadOffersNearBy} from './action';
+import {
+  changeAuthStatus,
+  loadComments,
+  loadCurrentOffer,
+  loadFavoriteOffers,
+  loadOffers,
+  loadOffersNearBy
+} from './action';
 import {AuthType} from '../types/auth-type';
 import {dropToken, saveToken, Token} from '../services/token';
 import {OfferType} from '../types/offer-type';
@@ -59,6 +66,13 @@ export function fetchCommentsList(id: number): ThunkActionResult {
   return async function (dispatch, _getState, api) {
     const {data} = await api.get<ReviewsListType>(`${APIRoute.Comments}/${id}`);
     dispatch(loadComments(data));
+  };
+}
+
+export function fetchFavoriteOffers(): ThunkActionResult {
+  return async function (dispatch, _getState, api) {
+    const {data} = await api.get<OffersListType>(APIRoute.Favorites);
+    dispatch(loadFavoriteOffers(data));
   };
 }
 

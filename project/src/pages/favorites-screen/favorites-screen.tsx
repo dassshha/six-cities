@@ -1,11 +1,27 @@
 import {OffersListFavorites} from '../../components/offers-list-favorites/offers-list-favorites';
-import {offers} from '../../mocks/offers';
 import {Header} from '../../components/header/header';
+import {useEffect} from 'react';
+import {useDispatch, useSelector} from 'react-redux';
+import {appDispatch} from '../../types/state-type';
+import {fetchFavoriteOffers} from '../../store/api-actions';
+import {getFavoriteOffers, getFavoritesLoadedFlag} from '../../store/data/selectors';
+import {LoadingScreen} from '../loading-screen/loading-screen';
 
 function FavoritesScreen(): JSX.Element {
+  const dispatch = useDispatch<appDispatch>();
+  useEffect(() => {
+    dispatch(fetchFavoriteOffers());
+  }, []);
+
+  const offers = useSelector(getFavoriteOffers);
+  const isDataLoaded = useSelector(getFavoritesLoadedFlag);
+
+  if (!isDataLoaded) {
+    return <LoadingScreen/>
+  }
   return (
     <div className="page">
-      {/*<Header/>*/}
+      <Header/>
 
       <main className="page__main page__main--favorites">
         <div className="page__favorites-container container">

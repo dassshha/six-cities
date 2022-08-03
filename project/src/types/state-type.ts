@@ -20,7 +20,9 @@ export type DataStateType = {
   isDataLoaded: boolean,
   currentOffer: OfferType,
   offersNearBy: OffersListType,
-  comments: ReviewsListType
+  comments: ReviewsListType,
+  favoriteOffers: OffersListType
+  areFavoriteOffersLoaded: boolean
 }
 
 export type UserStateType = {

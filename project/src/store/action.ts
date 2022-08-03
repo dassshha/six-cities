@@ -19,4 +19,5 @@ export const loadComments = createAction<ReviewsListType>(ActionType.LoadComment
 
 export const changeAuthStatus = createAction<string>(ActionType.ChangeAuthStatus);
 
+export const loadFavoriteOffers = createAction<OffersListType>(ActionType.LoadFavoriteOffers);
 

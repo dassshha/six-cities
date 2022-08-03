@@ -11,6 +11,7 @@ export enum ActionType {
   ChangeAuthStatus = 'user/changeAuthStatus',
   LoadOffersNearBy = 'data/loadOffersNearBy',
   LoadComments = 'data/loadComments',
+  LoadFavoriteOffers = 'data/loadFavoriteOffers'
 }
 
 export type ThunkActionResult<R = Promise<void>> = ThunkAction<R, StateType, AxiosInstance, Action>;

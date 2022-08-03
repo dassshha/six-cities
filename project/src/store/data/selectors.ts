@@ -23,3 +23,11 @@ export function getOffersNearBy(state: StateType): OffersListType {
 export function getComments(state: StateType): ReviewsListType {
   return state[Namespace.dataSpace].comments;
 }
+
+export function getFavoriteOffers(state: StateType): OffersListType {
+  return state[Namespace.dataSpace].favoriteOffers;
+}
+
+export function getFavoritesLoadedFlag(state: StateType): boolean {
+  return state[Namespace.dataSpace].areFavoriteOffersLoaded;
+}
