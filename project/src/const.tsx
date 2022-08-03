@@ -14,7 +14,8 @@ export enum AuthStatus {
 export enum AddToFavoritesCardPlace {
   Main= 'MAIN',
   NearBy = 'NEAR_BY',
-  Room = 'ROOM'
+  Room = 'ROOM',
+  Favorites = 'FAVORITES'
 }
 
 export enum APIRoute {
