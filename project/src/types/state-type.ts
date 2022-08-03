@@ -5,6 +5,7 @@ import {ReviewsListType} from './reviews-list-type';
 import {State} from '../store/reducer';
 import {useDispatch} from 'react-redux';
 import {store} from '../index';
+import {AuthStatus} from '../const';
 
 export type StateType = State;
 
@@ -26,5 +27,5 @@ export type DataStateType = {
 }
 
 export type UserStateType = {
-  authorizationStatus: string,
+  authorizationStatus: AuthStatus,
 }
