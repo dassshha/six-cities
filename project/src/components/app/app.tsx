@@ -32,7 +32,7 @@ function App(props: AppProps): JSX.Element {
         <Route path={AppRoute.SignIn} element={<SignInScreen/>} />
         <Route path={AppRoute.Favorites} element={
           <PrivateRouteConnected>
-            <FavoritesScreen/>
+            <FavoritesScreen cities={cities}/>
           </PrivateRouteConnected>
         }
         />

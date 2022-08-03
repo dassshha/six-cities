@@ -6,8 +6,15 @@ import {appDispatch} from '../../types/state-type';
 import {fetchFavoriteOffers} from '../../store/api-actions';
 import {getFavoriteOffers, getFavoritesLoadedFlag} from '../../store/data/selectors';
 import {LoadingScreen} from '../loading-screen/loading-screen';
+import {CitiesListType} from '../../types/cities-list-type';
+import {FavoriteOffersInCity} from '../../components/favorite-offers-in-city/favorite-offers-in-city';
+import {getOffersInCity} from '../../offers-in-city';
 
-function FavoritesScreen(): JSX.Element {
+type FavoritesScreenProps = {
+  cities: CitiesListType
+}
+
+function FavoritesScreen({cities}: FavoritesScreenProps): JSX.Element {
   const dispatch = useDispatch<appDispatch>();
   useEffect(() => {
     dispatch(fetchFavoriteOffers());
@@ -28,30 +35,32 @@ function FavoritesScreen(): JSX.Element {
           <section className="favorites">
             <h1 className="favorites__title">Saved listing</h1>
             <ul className="favorites__list">
-              <li className="favorites__locations-items">
-                <div className="favorites__locations locations locations--current">
-                  <div className="locations__item">
-                    <a className="locations__item-link" href="#">
-                      <span>Amsterdam</span>
-                    </a>
-                  </div>
-                </div>
-                {/*<OffersListFavorites offers={offers}/>*/}
-                <OffersListFavorites offers={offers}/>
-              </li>
+              {cities.map((city) => <FavoriteOffersInCity city={city} offers={getOffersInCity(city, offers)}/>)}
 
-              <li className="favorites__locations-items">
-                <div className="favorites__locations locations locations--current">
-                  <div className="locations__item">
-                    <a className="locations__item-link" href="#">
-                      <span>Cologne</span>
-                    </a>
-                  </div>
-                </div>
-                <OffersListFavorites offers={offers}/>
-                {/*<OffersListFavorites offers={offers}/>*/}
-                {/*<OffersList offers={offers} type={LIST_TYPE.FAVORITES}/>*/}
-              </li>
+              {/*<li className="favorites__locations-items">*/}
+              {/*  <div className="favorites__locations locations locations--current">*/}
+              {/*    <div className="locations__item">*/}
+              {/*      <a className="locations__item-link" href="#">*/}
+              {/*        <span>Amsterdam</span>*/}
+              {/*      </a>*/}
+              {/*    </div>*/}
+              {/*  </div>*/}
+              {/*  /!*<OffersListFavorites offers={offers}/>*!/*/}
+              {/*  <OffersListFavorites offers={offers}/>*/}
+              {/*</li>*/}
+
+              {/*<li className="favorites__locations-items">*/}
+              {/*  <div className="favorites__locations locations locations--current">*/}
+              {/*    <div className="locations__item">*/}
+              {/*      <a className="locations__item-link" href="#">*/}
+              {/*        <span>Cologne</span>*/}
+              {/*      </a>*/}
+              {/*    </div>*/}
+              {/*  </div>*/}
+              {/*  <OffersListFavorites offers={offers}/>*/}
+              {/*  /!*<OffersListFavorites offers={offers}/>*!/*/}
+              {/*  /!*<OffersList offers={offers} type={LIST_TYPE.FAVORITES}/>*!/*/}
+              {/*</li>*/}
             </ul>
           </section>
         </div>
