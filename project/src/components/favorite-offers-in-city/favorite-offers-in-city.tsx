@@ -6,7 +6,7 @@ type FavoriteOffersInCityProps = {
   city: CityType
 }
 
-function FavoriteOffersInCity({offers, city}: FavoriteOffersInCityProps): JSX.Element | undefined {
+function FavoriteOffersInCity({offers, city}: FavoriteOffersInCityProps): JSX.Element | null {
   if (offers.length){
     return (
       <li className="favorites__locations-items">
@@ -21,6 +21,7 @@ function FavoriteOffersInCity({offers, city}: FavoriteOffersInCityProps): JSX.El
         <OffersListFavorites offers={offers}/>
       </li>);
   }
+  return null;
 }
 
 export {FavoriteOffersInCity};

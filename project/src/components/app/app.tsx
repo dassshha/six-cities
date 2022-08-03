@@ -6,7 +6,7 @@ import {PageNotFoundScreen} from '../../pages/page-not-found-screen/page-not-fou
 import {CitiesListType} from '../../types/cities-list-type';
 import {useSelector} from 'react-redux';
 import {LoadingScreen} from '../../pages/loading-screen/loading-screen';
-import PrivateRouteConnected from '../../components/private-route/private-route';
+import {PrivateRoute} from '../../components/private-route/private-route';
 import {RoomScreen} from '../../pages/room-screen/room-screen';
 import {getDataLoadedFlag} from '../../store/data/selectors';
 import {MainScreen} from '../../pages/main-screen/main-screen';
@@ -31,9 +31,9 @@ function App(props: AppProps): JSX.Element {
         <Route path={AppRoute.Main} element={<MainScreen cities={cities}/>} />
         <Route path={AppRoute.SignIn} element={<SignInScreen/>} />
         <Route path={AppRoute.Favorites} element={
-          <PrivateRouteConnected>
+          <PrivateRoute>
             <FavoritesScreen cities={cities}/>
-          </PrivateRouteConnected>
+          </PrivateRoute>
         }
         />
         <Route path={AppRoute.Room} element={<RoomScreen/>}/>
