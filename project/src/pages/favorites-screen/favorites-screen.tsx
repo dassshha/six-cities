@@ -1,4 +1,3 @@
-import {OffersListFavorites} from '../../components/offers-list-favorites/offers-list-favorites';
 import {Header} from '../../components/header/header';
 import {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
@@ -7,8 +6,6 @@ import {fetchFavoriteOffers} from '../../store/api-actions';
 import {getFavoriteOffers, getFavoritesLoadedFlag} from '../../store/data/selectors';
 import {LoadingScreen} from '../loading-screen/loading-screen';
 import {CitiesListType} from '../../types/cities-list-type';
-import {FavoriteOffersInCity} from '../../components/favorite-offers-in-city/favorite-offers-in-city';
-import {getOffersInCity} from '../../offers-in-city';
 import {FavoritesFull} from '../../components/favorites-full/favorites-full';
 import {FavoritesEmpty} from '../../components/favorites-empty/favorites-empty';
 
@@ -26,7 +23,7 @@ function FavoritesScreen({cities}: FavoritesScreenProps): JSX.Element {
   const isDataLoaded = useSelector(getFavoritesLoadedFlag);
 
   if (!isDataLoaded) {
-    return <LoadingScreen/>
+    return <LoadingScreen/>;
   }
   return (
     <div className="page">

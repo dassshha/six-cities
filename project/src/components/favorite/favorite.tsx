@@ -1,7 +1,7 @@
 import {useDispatch, useSelector} from 'react-redux';
 import {appDispatch} from '../../types/state-type';
 import {addOfferToFavorites} from '../../store/api-actions';
-import {getCurrentOffer, getOffers} from '../../store/data/selectors';
+import {getCurrentOffer} from '../../store/data/selectors';
 import {getAuthStatus} from '../../store/user/selectors';
 import {AddToFavoritesCardPlace, AppRoute, AuthStatus} from '../../const';
 import {useNavigate} from 'react-router-dom';

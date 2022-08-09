@@ -7,7 +7,7 @@ import {AddToFavoritesCardPlace} from '../../const';
 function CardFavorites(props: OfferType): JSX.Element {
   const {previewImage, isPremium, price, title, type, isFavorite, rating, id} = props;
   return (
-    <article className="favorites__card place-card">
+    <article className="favorites__card place-card" role='offer-favorites'>
       <Premium className='place-card' isPremium={isPremium}/>
       <div className="favorites__image-wrapper place-card__image-wrapper">
         <a href="#">

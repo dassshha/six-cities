@@ -12,7 +12,7 @@ type CardMainProps = OfferType & {
 function CardMain(props: CardMainProps): JSX.Element {
   const {id, previewImage, isPremium, price, title, type, isFavorite, rating, onOfferHover} = props;
   return (
-    <article className="cities__place-card place-card" onMouseEnter={() => onOfferHover(id)}>
+    <article className="cities__place-card place-card" onMouseEnter={() => onOfferHover(id)} role='offer-main'>
       <Premium className='place-card' isPremium={isPremium}/>
       <div className="cities__image-wrapper place-card__image-wrapper">
         <Link to={`/offer/${id}`}>

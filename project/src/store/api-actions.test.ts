@@ -95,8 +95,8 @@ describe('Async actions', () => {
   });
 
   it('should dispatch loadComments when POST /comments:id', async () => {
-    const randomId = 0
-    const fakeComment: CommentPostType = {comment: reviews[reviews.length-1].comment, rating: reviews[reviews.length-1].rating}
+    const randomId = 0;
+    const fakeComment: CommentPostType = {comment: reviews[reviews.length-1].comment, rating: reviews[reviews.length-1].rating};
     mockAPI.onPost(`${APIRoute.Comments}/${randomId}`).reply(200, reviews);
 
     const store = mockStore();

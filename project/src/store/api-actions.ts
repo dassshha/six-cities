@@ -97,7 +97,7 @@ export function addOfferToFavorites(id: number, status: number, place: string, m
         return;
       case AddToFavoritesCardPlace.Room:
         await dispatch(fetchCurrentOffer(id));
-        return
+        return;
       case AddToFavoritesCardPlace.Favorites:
         await dispatch(fetchFavoriteOffers());
         return;

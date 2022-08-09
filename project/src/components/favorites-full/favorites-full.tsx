@@ -9,12 +9,13 @@ type FavoritesFullProps = {
 }
 
 function FavoritesFull({cities, offers}:FavoritesFullProps): JSX.Element {
-  return (<section className="favorites">
-    <h1 className="favorites__title">Saved listing</h1>
-    <ul className="favorites__list">
-      {cities.map((city) => <FavoriteOffersInCity city={city} offers={getOffersInCity(city, offers)}/>)}
-    </ul>
-  </section>);
+  return (
+    <section className="favorites">
+      <h1 className="favorites__title">Saved listing</h1>
+      <ul className="favorites__list">
+        {cities.map((city) => <FavoriteOffersInCity key={city.name} city={city} offers={getOffersInCity(city, offers)}/>)}
+      </ul>
+    </section>);
 }
 
 export {FavoritesFull};
