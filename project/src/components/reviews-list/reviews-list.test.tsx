@@ -4,11 +4,17 @@ import {reviews} from '../../mocks/reviews';
 
 const fakeReviews = reviews;
 
+jest.mock("../review/review", () => ({
+  Review: () => {
+    return <li data-testid='Review'></li>
+  }
+}))
+
 describe('Component: ReviewsList', () => {
   it('should render correctly', () => {
     render(
         <ReviewsList reviews={fakeReviews}/>
     );
-    expect(screen.getAllByRole('review')).toHaveLength(fakeReviews.length);
+    expect(screen.getAllByTestId('Review')).toHaveLength(fakeReviews.length);
   });
 });

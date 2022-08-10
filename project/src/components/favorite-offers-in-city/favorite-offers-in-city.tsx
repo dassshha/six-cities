@@ -17,7 +17,6 @@ function FavoriteOffersInCity({offers, city}: FavoriteOffersInCityProps): JSX.El
             </a>
           </div>
         </div>
-        {/*<OffersListFavorites offers={offers}/>*/}
         <OffersListFavorites offers={offers}/>
       </li>);
   }

@@ -1,5 +1,4 @@
 import {render, screen} from '@testing-library/react';
-import {reviews} from '../../mocks/reviews';
 import {RatingStar} from './rating-star';
 import {RATING} from '../../const';
 
@@ -13,6 +12,6 @@ describe('Component: RatingStar', () => {
     render(
       <RatingStar {...fakeRating}/>
     );
-    expect(screen.getByRole('star')).toBeInTheDocument();
+    expect(screen.getByTestId('Star')).toBeInTheDocument();
   });
 });

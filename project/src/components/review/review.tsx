@@ -4,7 +4,7 @@ import {Rating} from '../rating/rating';
 function Review(props: ReviewType): JSX.Element {
   const {comment, date, user, rating} = props;
   return (
-    <li className="reviews__item" role='review'>
+    <li className="reviews__item">
       <div className="reviews__user user">
         <div className="reviews__avatar-wrapper user__avatar-wrapper">
           <img className="reviews__avatar user__avatar" src={user.avatarUrl} width="54" height="54" alt="Reviews avatar"/>

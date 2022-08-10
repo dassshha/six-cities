@@ -9,6 +9,6 @@ describe('Component: Goods', () => {
     render(
       <Goods goods={fakeGoods}/>
     );
-    expect(screen.getAllByRole('good')).toHaveLength(fakeGoods.length);
+    expect(screen.getAllByTestId('Good')).toHaveLength(fakeGoods.length);
   });
 });

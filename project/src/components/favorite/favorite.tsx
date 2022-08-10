@@ -33,9 +33,9 @@ function Favorite({className, isFavorite, size, offerId, cardPlace}: FavoritePro
       <svg className={`${className}__bookmark-icon`} width={size.width} height={size.height}>
         <use xlinkHref="#icon-bookmark"/>
       </svg>
-      <span className="visually-hidden">To bookmarks</span>
+      <span className="visually-hidden">{isFavorite ? 'In bookmarks' : 'To bookmarks'}</span>
     </button>
   );
-}
+};
 
 export {Favorite};

@@ -12,6 +12,6 @@ describe('Component: Rating', () => {
     render(
       <Rating {...fakeRating}/>
     );
-    expect(screen.getByRole('rating')).toBeInTheDocument();
+    expect(screen.getByTestId('Rating')).toBeInTheDocument();
   });
 });
