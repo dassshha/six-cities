@@ -29,6 +29,7 @@ function App(props: AppProps): JSX.Element {
     <BrowserRouter>
       <Routes>
         <Route path={AppRoute.Main} element={<MainScreen cities={cities}/>} />
+        <Route path={AppRoute.Main} element={<h1>test!!!</h1>} />
         <Route path={AppRoute.SignIn} element={<SignInScreen/>} />
         <Route path={AppRoute.Favorites} element={
           <PrivateRoute>

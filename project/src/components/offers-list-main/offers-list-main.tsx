@@ -1,4 +1,3 @@
-
 import {OffersListType} from '../../types/offers-list-type';
 import {OffersList} from '../offers-list/offers-list';
 import {LIST_TYPE} from '../../const';
