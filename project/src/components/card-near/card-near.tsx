@@ -3,6 +3,7 @@ import {Rating} from '../rating/rating';
 import {Favorite} from '../favorite/favorite';
 import {Premium} from '../premium/premium';
 import {AddToFavoritesCardPlace} from '../../const';
+import {Link} from 'react-router-dom';
 
 type CardNearProps = OfferType
 function CardNear({previewImage, isPremium, price, title, type, isFavorite, rating, id}: CardNearProps): JSX.Element {
@@ -10,9 +11,9 @@ function CardNear({previewImage, isPremium, price, title, type, isFavorite, rati
     <article className="near-places__card place-card" role='offer-near-by'>
       <Premium className='place-card' isPremium={isPremium}/>
       <div className="near-places__image-wrapper place-card__image-wrapper">
-        <a href="#">
+        <Link to={`/offer/${id}`} onClick={() => window.scrollTo(0, 0)}>
           <img className="place-card__image" src={previewImage} width="260" height="200" alt="Place image"/>
-        </a>
+        </Link>
       </div>
       <div className="place-card__info">
         <div className="place-card__price-wrapper">
@@ -26,7 +27,7 @@ function CardNear({previewImage, isPremium, price, title, type, isFavorite, rati
           <Rating value={rating} className='place-card'/>
         </div>
         <h2 className="place-card__name">
-          <a href="#">{title}</a>
+          <Link to={`/offer/${id}`} onClick={() => window.scrollTo(0, 0)}>{title}</Link>
         </h2>
         <p className="place-card__type">{type}</p>
       </div>
