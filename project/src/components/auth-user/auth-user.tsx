@@ -13,11 +13,13 @@ function AuthUser(): JSX.Element {
   }
   return (
     <Fragment>
-      <Link to={AppRoute.Favorites} className="header__nav-item user">
+      <li className="header__nav-item user">
+        <Link className="header__nav-link header__nav-link--profile" to={AppRoute.Favorites}>
           <div className="header__avatar-wrapper user__avatar-wrapper">
           </div>
           <span className="header__user-name user__name">Oliver.conner@gmail.com</span>
-      </Link>
+        </Link>
+      </li>
       <li className="header__nav-item">
         <Link className="header__nav-link" to='#' onClick={handleLogout}>
           <span className="header__signout">Sign out</span>

@@ -26,10 +26,8 @@ function App(props: AppProps): JSX.Element {
   }
 
   return (
-    <BrowserRouter>
       <Routes>
         <Route path={AppRoute.Main} element={<MainScreen cities={cities}/>} />
-        <Route path={AppRoute.Main} element={<h1>test!!!</h1>} />
         <Route path={AppRoute.SignIn} element={<SignInScreen/>} />
         <Route path={AppRoute.Favorites} element={
           <PrivateRoute>
@@ -40,7 +38,6 @@ function App(props: AppProps): JSX.Element {
         <Route path={AppRoute.Room} element={<RoomScreen/>}/>
         <Route path='*' element={<PageNotFoundScreen/>}/>
       </Routes>
-    </BrowserRouter>
   );
 }
 

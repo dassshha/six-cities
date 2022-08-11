@@ -9,6 +9,7 @@ import {checkAuth, fetchOffersList} from './store/api-actions';
 import {changeAuthStatus} from './store/action';
 import {AuthStatus} from './const';
 import {configureStore} from '@reduxjs/toolkit';
+import {BrowserRouter} from 'react-router-dom';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement,
@@ -32,7 +33,9 @@ store.dispatch(fetchOffersList());
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <App cities={cities}/>
+      <BrowserRouter>
+        <App cities={cities}/>
+      </BrowserRouter>
     </Provider>
   </React.StrictMode>,
 );
