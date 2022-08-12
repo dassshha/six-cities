@@ -8,22 +8,22 @@ const fakeOffer = offers[0];
 
 jest.mock('../rating/rating', () => ({
   Rating: () => <div data-testid='Rating'></div>
-}))
+}));
 
 jest.mock('../premium/premium', () => ({
   Premium: () => <div data-testid='Premium'></div>
-}))
+}));
 
 jest.mock('../favorite/favorite', () => ({
   Favorite: () => <div data-testid='Favorite'></div>
-}))
+}));
 
 describe('Component: CardFavorites', () => {
   it('should render correctly', () => {
     render(
-        <BrowserRouter>
-          <CardFavorites {...fakeOffer}/>
-        </BrowserRouter>
+      <BrowserRouter>
+        <CardFavorites {...fakeOffer}/>
+      </BrowserRouter>
     );
     expect(screen.getByTestId('Premium')).toBeInTheDocument();
     expect(screen.getByAltText(/Place image/i)).toBeInTheDocument();

@@ -4,9 +4,9 @@ import {Review} from './review';
 
 const fakeReview = reviews[0];
 
-jest.mock("../rating/rating", () => ({
+jest.mock('../rating/rating', () => ({
   Rating: () => <div data-testid='Rating'></div>
-}))
+}));
 
 describe('Component: Review', () => {
   it('should render correctly', () => {

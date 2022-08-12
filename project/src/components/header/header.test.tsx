@@ -10,14 +10,14 @@ const fakeStore = configureMockStore();
 
 jest.mock('../auth-user/auth-user', () => ({
   AuthUser: () => <div data-testid='AuthUser'></div>
-}))
+}));
 
 jest.mock('../not-auth-user/not-auth-user', () => ({
   NotAuthUser: () => <div data-testid='NotAuthUser'></div>
-}))
+}));
 
 describe('Component: Header', () => {
-  it("should render 'auth' component if auth status is true", () => {
+  it('should render auth component if auth status is true', () => {
     const store = fakeStore({
       USER: {authorizationStatus: AuthStatus.Auth}
     });
@@ -31,7 +31,7 @@ describe('Component: Header', () => {
     expect(screen.getByTestId('AuthUser')).toBeInTheDocument();
     expect(screen.queryByTestId('NotAuthUser')).not.toBeInTheDocument();
   });
-  it("should render 'not-auth' component if auth status is false", () => {
+  it('should render not-auth component if auth status is false', () => {
     const store = fakeStore({
       USER: {authorizationStatus: AuthStatus.NoAuth}
     });

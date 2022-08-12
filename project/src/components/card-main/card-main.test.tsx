@@ -8,15 +8,15 @@ const fakeOffer = offers[0];
 
 jest.mock('../rating/rating', () => ({
   Rating: () => <div data-testid='Rating'></div>
-}))
+}));
 
 jest.mock('../premium/premium', () => ({
   Premium: () => <div data-testid='Premium'></div>
-}))
+}));
 
 jest.mock('../favorite/favorite', () => ({
   Favorite: () => <div data-testid='Favorite'></div>
-}))
+}));
 
 describe('Component: CardMain', () => {
   it('should render correctly', () => {

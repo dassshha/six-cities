@@ -9,24 +9,24 @@ import {AppRoute} from '../../const';
 jest.mock('../../pages/main-screen/main-screen', () => ({
   MainScreen: () => <div data-testid='MainScreen'></div>
 
-}))
+}));
 
 jest.mock('../../pages/sign-in-screen/sign-in-screen', () => ({
   SignInScreen: () => <div data-testid='SignInScreen'></div>
 
-}))
+}));
 
 jest.mock('../../pages/room-screen/room-screen', () => ({
   RoomScreen: () => <div data-testid='RoomScreen'></div>
-}))
+}));
 
 jest.mock('../../pages/page-not-found-screen/page-not-found-screen', () => ({
   PageNotFoundScreen: () => <div data-testid='PageNotFoundScreen'></div>
-}))
+}));
 
 jest.mock('../../components/private-route/private-route', () => ({
   PrivateRoute: () => <div data-testid='PrivateRoute'></div>
-}))
+}));
 
 
 const fakeStore = configureMockStore();

@@ -21,7 +21,7 @@ describe('Component: Host', () => {
     expect(screen.getByText('Pro')).toBeInTheDocument();
   });
 
-  it('should render pro label if host is pro', () => {
+  it('should not render pro label if host is not pro', () => {
     fakeHost.isPro = false;
     render(
       <Host host={fakeHost}/>

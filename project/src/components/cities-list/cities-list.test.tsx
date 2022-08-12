@@ -18,8 +18,8 @@ describe('Component: CitiesList', () => {
         </BrowserRouter>
       </Provider>
     );
-    const cities = screen.getAllByTestId('City');
-    expect(cities).toHaveLength(fakeCities.length);
-    cities.forEach((city, i) => expect(city).toHaveTextContent(fakeCities[i].name));
+    const citiesOnScreen = screen.getAllByTestId('City');
+    expect(citiesOnScreen).toHaveLength(fakeCities.length);
+    citiesOnScreen.forEach((city, i) => expect(city).toHaveTextContent(fakeCities[i].name));
   });
 });

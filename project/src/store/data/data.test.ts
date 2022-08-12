@@ -18,7 +18,7 @@ describe('Reducer: data', () => {
   it('without additional parameters should return initial state', () => {
     expect(dataReducer(undefined, {type: 'UNKNOWN_ACTION'}))
       .toEqual(state);
-  })
+  });
 
   it('should load offers and change data loaded flag', () => {
     expect(dataReducer(state, loadOffers(offers)))

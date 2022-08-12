@@ -9,7 +9,7 @@ const fakeOffer = offers[0];
 
 jest.mock('../rating-star/rating-star', () => ({
   RatingStar: () => <div data-testid='RatingStar'></div>
-}))
+}));
 
 describe('Component: ReviewForm', () => {
   it('should render correctly', () => {

@@ -47,7 +47,7 @@ describe('Async actions', () => {
   });
 
   it('should dispatch loadCurrentOffer when GET /hotels:id', async () => {
-    const randomId = 0
+    const randomId = 0;
     mockAPI.onGet(`${APIRoute.Hotels}/${randomId}`).reply(200, offers[0]);
 
     const store = mockStore();
@@ -57,7 +57,7 @@ describe('Async actions', () => {
   });
 
   it('should dispatch loadOffersNearBy when GET /hotels:id/nearby', async () => {
-    const randomId = 0
+    const randomId = 0;
     mockAPI.onGet(`${APIRoute.Hotels}/${randomId}/nearby`).reply(200, offers);
 
     const store = mockStore();
@@ -67,7 +67,7 @@ describe('Async actions', () => {
   });
 
   it('should dispatch loadComments when GET /comments:id', async () => {
-    const randomId = 0
+    const randomId = 0;
     mockAPI.onGet(`${APIRoute.Comments}/${randomId}`).reply(200, reviews);
 
     const store = mockStore();
@@ -96,7 +96,7 @@ describe('Async actions', () => {
 
   it('should dispatch loadComments when POST /comments:id', async () => {
     const randomId = 0;
-    const fakeComment: CommentPostType = {comment: reviews[reviews.length-1].comment, rating: reviews[reviews.length-1].rating};
+    const fakeComment: CommentPostType = {comment: reviews[reviews.length - 1].comment, rating: reviews[reviews.length-1].rating};
     mockAPI.onPost(`${APIRoute.Comments}/${randomId}`).reply(200, reviews);
 
     const store = mockStore();

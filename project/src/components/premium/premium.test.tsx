@@ -14,7 +14,7 @@ describe('Component: Premium', () => {
     expect(screen.getByText(/Premium/i)).toBeInTheDocument();
   });
 
-  it("shouldn't render anything when premium is false", () => {
+  it('should not render anything when premium is false', () => {
     fakePremium.isPremium = false;
     render(
       <Premium {...fakePremium}/>

@@ -7,7 +7,7 @@ import {AuthStatus} from '../../const';
 import {BrowserRouter} from 'react-router-dom';
 
 const fakeStore = configureMockStore();
-const fakeFavoriteProps  = {
+const fakeFavoriteProps = {
   cardPlace: 'fakeCardPlace',
   offerId: 0,
   className: 'fakeClassName',
@@ -16,12 +16,12 @@ const fakeFavoriteProps  = {
     width: 15,
     height: 15
   }
-}
+};
 const fakeOffer = offers[0];
 
 
 describe('Component: Favorite', () => {
-  it("should render 'in bookmarks' if favorite", () => {
+  it('should render text - in bookmarks if favorite', () => {
     const store = fakeStore({
       DATA: {currentOffer: fakeOffer},
       USER: {authorizationStatus: AuthStatus.Auth}
@@ -35,7 +35,7 @@ describe('Component: Favorite', () => {
     );
     expect(screen.getByRole('button')).toHaveTextContent(/In bookmarks/i);
   });
-  it("should render 'to bookmarks' if not favorite", () => {
+  it('should render text to bookmarks if not favorite', () => {
     const store = fakeStore({
       DATA: {currentOffer: fakeOffer},
       USER: {authorizationStatus: AuthStatus.Auth}

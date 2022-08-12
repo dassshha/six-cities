@@ -7,7 +7,7 @@ const fakeImages = offers[0].images;
 describe('Component: RoomGallery', () => {
   it('should render correctly', () => {
     render(
-        <RoomGallery images={fakeImages}/>
+      <RoomGallery images={fakeImages}/>
     );
     expect(screen.getAllByAltText(/Photo studio/i)).toHaveLength(fakeImages.length);
   });

@@ -3,7 +3,6 @@ import {OffersListType} from './offers-list-type';
 import {OfferType} from './offer-type';
 import {ReviewsListType} from './reviews-list-type';
 import {State} from '../store/reducer';
-import {useDispatch} from 'react-redux';
 import {store} from '../index';
 import {AuthStatus} from '../const';
 
