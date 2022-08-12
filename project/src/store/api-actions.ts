@@ -93,13 +93,16 @@ export function addOfferToFavorites(id: number, status: number, place: string, m
       case AddToFavoritesCardPlace.NearBy:
         if (mainOfferId) {
           await dispatch(fetchOffersListNearBy(mainOfferId));
+          await dispatch(fetchOffersList());
         }
         return;
       case AddToFavoritesCardPlace.Room:
         await dispatch(fetchCurrentOffer(id));
+        await dispatch(fetchOffersList());
         return;
       case AddToFavoritesCardPlace.Favorites:
         await dispatch(fetchFavoriteOffers());
+        await dispatch(fetchOffersList());
         return;
       default:
         return;
