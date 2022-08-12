@@ -25,10 +25,10 @@ export function fetchOffersList(): ThunkActionResult {
 
 export function checkAuth(): ThunkActionResult {
   return async function (dispatch, _getState, api) {
-    await api.get(APIRoute.Login)
-      .then(() => {
-        dispatch(changeAuthStatus(AuthStatus.Auth));
-      });
+    const {data} = await api.get(APIRoute.Login);
+    if (data) {
+      dispatch(changeAuthStatus(AuthStatus.Auth));
+    }
   };
 }
 

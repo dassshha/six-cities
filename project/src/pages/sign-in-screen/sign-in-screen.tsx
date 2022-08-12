@@ -3,10 +3,10 @@ import {appDispatch} from '../../types/state-type';
 import {useDispatch, useSelector} from 'react-redux';
 import {login} from '../../store/api-actions';
 import {AppRoute, AuthStatus} from '../../const';
-import {useNavigate} from 'react-router-dom';
+import {Link, Navigate, useNavigate} from 'react-router-dom';
 import {getAuthStatus} from '../../store/user/selectors';
 
-function SignInScreen(): JSX.Element | void {
+function SignInScreen(): JSX.Element {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -27,7 +27,7 @@ function SignInScreen(): JSX.Element | void {
     }
   };
   if (authorizationStatus === AuthStatus.Auth) {
-     return navigate(AppRoute.Main);
+     navigate(AppRoute.Main);
   }
   return (
     <div className="page page--gray page--login">
@@ -35,9 +35,9 @@ function SignInScreen(): JSX.Element | void {
         <div className="container">
           <div className="header__wrapper">
             <div className="header__left">
-              <a className="header__logo-link" href="main.html">
+              <Link className="header__logo-link" to={AppRoute.Main}>
                 <img className="header__logo" src="img/logo.svg" alt="6 cities logo" width="81" height="41"/>
-              </a>
+              </Link>
             </div>
           </div>
         </div>

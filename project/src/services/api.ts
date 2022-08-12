@@ -21,6 +21,7 @@ export function createApi(onUnauthorized: () => void): AxiosInstance {
     (error: AxiosError) => {
       const {response} = error;
       if (response?.status === HttpCode.Unauthorized) {
+        console.log(123);
         return onUnauthorized();
       }
 
