@@ -1,4 +1,4 @@
-import {ChangeEvent, FormEvent, useState} from 'react';
+import {ChangeEvent, FormEvent, useEffect, useState} from 'react';
 import {appDispatch} from '../../types/state-type';
 import {useDispatch, useSelector} from 'react-redux';
 import {login} from '../../store/api-actions';
@@ -26,9 +26,12 @@ function SignInScreen(): JSX.Element {
       return navigate(AppRoute.Main);
     }
   };
-  if (authorizationStatus === AuthStatus.Auth) {
-     navigate(AppRoute.Main);
-  }
+  useEffect(() => {
+    if (authorizationStatus === AuthStatus.Auth) {
+      navigate(AppRoute.Main);
+    }
+  }, [authorizationStatus]);
+
   return (
     <div className="page page--gray page--login">
       <header className="header">
