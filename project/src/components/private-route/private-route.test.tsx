@@ -2,7 +2,7 @@ import {render, screen} from '@testing-library/react';
 import {Provider} from 'react-redux';
 import {configureMockStore} from '@jedmao/redux-mock-store';
 import {AppRoute, AuthStatus} from '../../const';
-import {MemoryRouter, Route, Routes, useNavigate} from 'react-router-dom';
+import {MemoryRouter, Route, Routes} from 'react-router-dom';
 import {PrivateRoute} from './private-route';
 
 const fakeStore = configureMockStore();
