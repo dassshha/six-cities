@@ -7,21 +7,15 @@ const fakeOffer = offers[0];
 
 
 jest.mock('../rating/rating', () => ({
-  Rating: () => {
-    return <div data-testid='Rating'></div>
-  }
+  Rating: () => <div data-testid='Rating'></div>
 }))
 
 jest.mock('../premium/premium', () => ({
-  Premium: () => {
-    return <div data-testid='Premium'></div>
-  }
+  Premium: () => <div data-testid='Premium'></div>
 }))
 
 jest.mock('../favorite/favorite', () => ({
-  Favorite: () => {
-    return <div data-testid='Favorite'></div>
-  }
+  Favorite: () => <div data-testid='Favorite'></div>
 }))
 
 describe('Component: CardNear', () => {

@@ -7,33 +7,25 @@ import {cities} from '../../mocks/city';
 import {AppRoute} from '../../const';
 
 jest.mock('../../pages/main-screen/main-screen', () => ({
-  MainScreen: () => {
-    return <div data-testid='MainScreen'></div>
-  }
+  MainScreen: () => <div data-testid='MainScreen'></div>
+
 }))
 
 jest.mock('../../pages/sign-in-screen/sign-in-screen', () => ({
-  SignInScreen: () => {
-    return <div data-testid='SignInScreen'></div>
-  }
+  SignInScreen: () => <div data-testid='SignInScreen'></div>
+
 }))
 
 jest.mock('../../pages/room-screen/room-screen', () => ({
-  RoomScreen: () => {
-    return <div data-testid='RoomScreen'></div>
-  }
+  RoomScreen: () => <div data-testid='RoomScreen'></div>
 }))
 
 jest.mock('../../pages/page-not-found-screen/page-not-found-screen', () => ({
-  PageNotFoundScreen: () => {
-    return <div data-testid='PageNotFoundScreen'></div>
-  }
+  PageNotFoundScreen: () => <div data-testid='PageNotFoundScreen'></div>
 }))
 
 jest.mock('../../components/private-route/private-route', () => ({
-  PrivateRoute: () => {
-    return <div data-testid='PrivateRoute'></div>
-  }
+  PrivateRoute: () => <div data-testid='PrivateRoute'></div>
 }))
 
 

@@ -8,9 +8,7 @@ const fakeStore = configureMockStore();
 const fakeOffer = offers[0];
 
 jest.mock('../rating-star/rating-star', () => ({
-  RatingStar: () => {
-    return <div data-testid='RatingStar'></div>
-  }
+  RatingStar: () => <div data-testid='RatingStar'></div>
 }))
 
 describe('Component: ReviewForm', () => {

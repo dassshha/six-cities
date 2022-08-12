@@ -9,15 +9,11 @@ import {BrowserRouter} from 'react-router-dom';
 const fakeStore = configureMockStore();
 
 jest.mock('../auth-user/auth-user', () => ({
-  AuthUser: () => {
-    return <div data-testid='AuthUser'></div>
-  }
+  AuthUser: () => <div data-testid='AuthUser'></div>
 }))
 
 jest.mock('../not-auth-user/not-auth-user', () => ({
-  NotAuthUser: () => {
-    return <div data-testid='NotAuthUser'></div>
-  }
+  NotAuthUser: () => <div data-testid='NotAuthUser'></div>
 }))
 
 describe('Component: Header', () => {
