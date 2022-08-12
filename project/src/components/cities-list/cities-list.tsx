@@ -4,7 +4,7 @@ import {compareCities} from '../../offers-in-city';
 import {changeCity} from '../../store/action';
 import {useDispatch} from 'react-redux';
 import {appDispatch} from '../../types/state-type';
-import {Link, NavLink} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import {AppRoute} from '../../const';
 
 type CitiesListProps = {

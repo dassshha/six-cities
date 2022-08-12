@@ -103,9 +103,6 @@ export function addOfferToFavorites(id: number, status: number, place: string, m
       case AddToFavoritesCardPlace.Favorites:
         await dispatch(fetchFavoriteOffers());
         await dispatch(fetchOffersList());
-        return;
-      default:
-        return;
     }
 
   };

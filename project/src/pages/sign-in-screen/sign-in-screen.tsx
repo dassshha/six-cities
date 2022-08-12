@@ -3,7 +3,7 @@ import {appDispatch} from '../../types/state-type';
 import {useDispatch, useSelector} from 'react-redux';
 import {login} from '../../store/api-actions';
 import {AppRoute, AuthStatus} from '../../const';
-import {Link, Navigate, useNavigate} from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
 import {getAuthStatus} from '../../store/user/selectors';
 
 function SignInScreen(): JSX.Element {

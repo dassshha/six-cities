@@ -36,6 +36,6 @@ function Favorite({className, isFavorite, size, offerId, cardPlace}: FavoritePro
       <span className="visually-hidden">{isFavorite ? 'In bookmarks' : 'To bookmarks'}</span>
     </button>
   );
-};
+}
 
 export {Favorite};

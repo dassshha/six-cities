@@ -26,7 +26,7 @@ function ReviewForm(): JSX.Element {
     if (comment.length < 50 || comment.length > 300 || !rating) {
       setDisabled(true);
     } else {
-      setDisabled(false)
+      setDisabled(false);
     }
   }
   useEffect(() => {
@@ -37,18 +37,14 @@ function ReviewForm(): JSX.Element {
       <h1>{rating}</h1>
       <h1>{comment}</h1>
       <label className="reviews__label form__label" htmlFor="review">Your review</label>
-      <div className="reviews__rating-form form__rating" onChange={(evt: ChangeEvent<HTMLInputElement>) => {
-        setRating(Number(evt.target.value));
-      }}>
+      <div className="reviews__rating-form form__rating" onChange={(evt: ChangeEvent<HTMLInputElement>) => setRating(Number(evt.target.value))}>
         <RatingStar title={RATING.PERFECT.title} value={RATING.PERFECT.value}/>
         <RatingStar title={RATING.GOOD.title} value={RATING.GOOD.value}/>
         <RatingStar title={RATING.NOT_BAD.title} value={RATING.NOT_BAD.value}/>
         <RatingStar title={RATING.BADLY.title} value={RATING.BADLY.value}/>
         <RatingStar title={RATING.TERRIBLY.title} value={RATING.TERRIBLY.value}/>
       </div>
-      <textarea value={comment} onChange={(evt) => {
-        setComment(evt.target.value);
-      }} className="reviews__textarea form__textarea" id="review" name="review" placeholder="Tell how was your stay, what you like and what can be improved" maxLength={300} minLength={50}></textarea>
+      <textarea value={comment} onChange={(evt) => setComment(evt.target.value)} className="reviews__textarea form__textarea" id="review" name="review" placeholder="Tell how was your stay, what you like and what can be improved" maxLength={300} minLength={50}></textarea>
       <div className="reviews__button-wrapper">
         <p className="reviews__help">
           To submit review please make sure to set <span className="reviews__star">rating</span> and describe your stay

@@ -1,4 +1,4 @@
-import {BrowserRouter, Route, Routes} from 'react-router-dom';
+import {Route, Routes} from 'react-router-dom';
 import {AppRoute} from '../../const';
 import {SignInScreen} from '../../pages/sign-in-screen/sign-in-screen';
 import {FavoritesScreen} from '../../pages/favorites-screen/favorites-screen';
@@ -26,18 +26,18 @@ function App(props: AppProps): JSX.Element {
   }
 
   return (
-      <Routes>
-        <Route path={AppRoute.Main} element={<MainScreen cities={cities}/>} />
-        <Route path={AppRoute.SignIn} element={<SignInScreen/>} />
-        <Route path={AppRoute.Favorites} element={
-          <PrivateRoute>
-            <FavoritesScreen cities={cities}/>
-          </PrivateRoute>
-        }
-        />
-        <Route path={AppRoute.Room} element={<RoomScreen/>}/>
-        <Route path='*' element={<PageNotFoundScreen/>}/>
-      </Routes>
+    <Routes>
+      <Route path={AppRoute.Main} element={<MainScreen cities={cities}/>} />
+      <Route path={AppRoute.SignIn} element={<SignInScreen/>} />
+      <Route path={AppRoute.Favorites} element={
+        <PrivateRoute>
+          <FavoritesScreen cities={cities}/>
+        </PrivateRoute>
+      }
+      />
+      <Route path={AppRoute.Room} element={<RoomScreen/>}/>
+      <Route path='*' element={<PageNotFoundScreen/>}/>
+    </Routes>
   );
 }
 
