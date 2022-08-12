@@ -6,7 +6,7 @@ import {AppRoute, AuthStatus} from '../../const';
 import {useNavigate} from 'react-router-dom';
 import {getAuthStatus} from '../../store/user/selectors';
 
-function SignInScreen(): JSX.Element {
+function SignInScreen(): JSX.Element | void {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -26,6 +26,9 @@ function SignInScreen(): JSX.Element {
       return navigate(AppRoute.Main);
     }
   };
+  if (authorizationStatus === AuthStatus.Auth) {
+     return navigate(AppRoute.Main);
+  }
   return (
     <div className="page page--gray page--login">
       <header className="header">
